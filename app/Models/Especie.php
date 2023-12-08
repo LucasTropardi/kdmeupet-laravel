@@ -10,6 +10,7 @@ class Especie extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id', // int
         'esNome', // string
     ];
 
@@ -26,5 +27,10 @@ class Especie extends Model
     public function tamanho()
     {
         return $this->hasMany(Tamanho::class, 'tamanho_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

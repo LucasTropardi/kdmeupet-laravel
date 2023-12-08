@@ -11,6 +11,7 @@
                 </div>
 
                 <!-- Navigation Links -->
+                <!-- Dashboard do usuário -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
@@ -19,20 +20,29 @@
 
                 <!-- Users gerenciador -->
                 @can('level')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('users.index')">
-                        <i class="fa-solid fa-user-gear" title="Usuários"></i>
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('users.index')">
+                            <i class="fa-solid fa-user-gear" title="Usuários"></i>
+                        </x-nav-link>
+                    </div>
                 @endcan
 
-                <!-- Users gerenciador -->
+                <!-- Cores gerenciador -->
                 @can('level')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('cor.index')" :active="request()->routeIs('cor.index')">
-                        <i class="fa-solid fa-palette"></i>
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('cor.index')" :active="request()->routeIs('cor.index')">
+                            <i class="fa-solid fa-palette" title="Cores"></i>
+                        </x-nav-link>
+                    </div>
+                @endcan
+
+                <!-- Espécies gerenciador -->
+                @can('level')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('especie.index')" :active="request()->routeIs('especie.index')">
+                            <i class="fa-solid fa-otter" title="Espécies"></i>
+                        </x-nav-link>
+                    </div>
                 @endcan
             </div>
 

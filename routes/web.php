@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CorController;
+use App\Http\Controllers\EspecieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -51,7 +52,15 @@ Route::resources([
 Route::get('confirma-delete-cor/{id}', [CorController::class, 'confirma_delete_cor'])
     ->name('confirma.delete.cor');
 
+// Rotas para espécies
+Route::resources([
+    'especie' => EspecieController::class,
+]);
 
+Route::get('confirma-delete-especie/{id}', [EspecieController::class, 'confirma_delete_especie'])
+    ->name('confirma.delete.especie');
+
+// Dashboard do usuário
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

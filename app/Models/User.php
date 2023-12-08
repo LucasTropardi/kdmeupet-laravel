@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cor::class, 'user_id', 'id');
     }
+
+    public function especie()
+    {
+        return $this->hasMany(Especie::class, 'user_id', 'id');
+    }
 }

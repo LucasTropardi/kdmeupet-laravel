@@ -13,7 +13,9 @@ class EspecieController extends Controller
      */
     public function index()
     {
-        //
+        return view('logado.gerenciador.especies.index', [
+            'especies' => Especie::orderByDesc('created_at')->paginate('5'),
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class EspecieController extends Controller
      */
     public function create()
     {
-        //
+        return view('logado.gerenciador.especies.create');
     }
 
     /**
@@ -29,7 +31,12 @@ class EspecieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $especie = new Especie();
+        $especie->user_id = $request->user_id;
+        $especie->esNome = $request->esNome;
+
+        $especie->save();
+        return redirect(route('especie.index'));
     }
 
     /**
@@ -37,7 +44,9 @@ class EspecieController extends Controller
      */
     public function show(Especie $especie)
     {
-        //
+        return view('logado.gerenciador.especies.show', [
+            'especie' => $especie,
+        ]);
     }
 
     /**
@@ -45,7 +54,7 @@ class EspecieController extends Controller
      */
     public function edit(Especie $especie)
     {
-        //
+        return view('logado.gerenciador.especies.edit', ['especie' => $especie]);
     }
 
     /**
@@ -53,7 +62,8 @@ class EspecieController extends Controller
      */
     public function update(Request $request, Especie $especie)
     {
-        //
+        Especie::findOrFail($especie->id)->update($request->all());
+        return redirect(route('especie.index'));
     }
 
     /**
@@ -61,6 +71,13 @@ class EspecieController extends Controller
      */
     public function destroy(Especie $especie)
     {
-        //
+        Especie::findOrFail($especie->id)->delete();
+        return redirect(route('especie.index'));
+    }
+
+    public function confirma_delete_especie($id)
+    {
+        $especie = Especie::find($id);
+        return view('logado.gerenciador.especies.confirma_delete_especie', ['id' => $id, 'especie' => $especie]);
     }
 }
