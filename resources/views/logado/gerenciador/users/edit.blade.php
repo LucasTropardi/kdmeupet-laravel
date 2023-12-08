@@ -23,7 +23,7 @@
                     </p>
                 </div>
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('user.alterar', $user->id) }}" method="post">
+                    <form action="{{ route('user.update', $user->id) }}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="mb-4">
@@ -34,7 +34,7 @@
                             </select>
                         </div>
                         <div>
-                            <x-primary-button>{{ __('Alterar') }}<i class="fa-regular fa-floppy-disk ml-1"></i></x-primary-button>
+                            <x-primary-button>{{ __('Alterar') }}</x-primary-button>
                         </div>
                     </form>
                 </div>

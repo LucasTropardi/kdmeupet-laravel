@@ -36,13 +36,20 @@ Route::view('adocoes', 'public.adocoes')
 Route::get('users-index', [UserController::class, 'index'])
     ->name('user.index');
 
-Route::get('user-alterar/{id}', [UserController::class, 'alterar'])
-    ->name('user.alterar');
+Route::get('user-edit/{id}', [UserController::class, 'edit'])
+    ->name('user.edit');
+
+Route::put('user-update/{id}', [UserController::class, 'update'])
+    ->name('user.update');
+
 
 // Rotas para Cores
 Route::resources([
     'cor' => CorController::class,
 ]);
+
+Route::get('confirma-delete-cor/{id}', [CorController::class, 'confirma_delete_cor'])
+    ->name('confirma.delete.cor');
 
 
 Route::get('/dashboard', function () {

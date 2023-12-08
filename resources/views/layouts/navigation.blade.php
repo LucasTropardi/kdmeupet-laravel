@@ -30,7 +30,7 @@
                 @can('level')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('cor.index')" :active="request()->routeIs('cor.index')">
-                        <i class="fa-solid fa-user-gear" title="Cores"></i>
+                        <i class="fa-solid fa-palette"></i>
                     </x-nav-link>
                 </div>
                 @endcan

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user->id')->constrained();
             $table->string('cor');
             $table->timestamps();
         });

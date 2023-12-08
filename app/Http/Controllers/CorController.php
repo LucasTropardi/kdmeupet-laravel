@@ -13,7 +13,9 @@ class CorController extends Controller
      */
     public function index()
     {
-        return view('logado.gerenciador.cores.index');
+        return view('logado.gerenciador.cores.index', [
+            'cores' => Cor::orderByDesc('created_at')->paginate('5'),
+        ]);
     }
 
     /**
@@ -29,7 +31,12 @@ class CorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cor = new Cor();
+        $cor->user_id = $request->user_id;
+        $cor->cor = $request->cor;
+
+        $cor->save();
+        return redirect(route('cor.index'));
     }
 
     /**
@@ -37,7 +44,9 @@ class CorController extends Controller
      */
     public function show(Cor $cor)
     {
-        //
+        return view('logado.gerenciador.cores.show', [
+            'cor' => $cor,
+        ]);
     }
 
     /**
@@ -45,7 +54,7 @@ class CorController extends Controller
      */
     public function edit(Cor $cor)
     {
-        //
+        return view('logado.gerenciador.cores.edit', ['cor' => $cor]);
     }
 
     /**
@@ -53,7 +62,8 @@ class CorController extends Controller
      */
     public function update(Request $request, Cor $cor)
     {
-        //
+        Cor::findOrFail($cor->id)->update($request->all());
+        return redirect(route('cor.index'));
     }
 
     /**
@@ -61,6 +71,13 @@ class CorController extends Controller
      */
     public function destroy(Cor $cor)
     {
-        //
+        Cor::findOrFail($cor->id)->delete();
+        return redirect(route('cor.index'));
+    }
+
+    public function confirma_delete_cor($id)
+    {
+        $cor = Cor::find($id);
+        return view('logado.gerenciador.cores.confirma_delete_cor', ['id' => $id, 'cor' => $cor]);
     }
 }

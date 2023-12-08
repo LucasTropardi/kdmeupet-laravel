@@ -42,7 +42,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->telefone }}</td>
                                     @can('level')
-                                        <td class="text-center"><a href="{{ route('user.alterar', $user->id) }}" title="Editar"><i class="fa-solid fa-user-pen"></i></a></td>
+                                    <td class="text-center"><a href="{{ route('user.edit', $user->id) }}" title="Editar"><i class="fa-solid fa-user-pen"></i></a></td>
                                     @endcan
                                 </tr>
                             @endforeach
