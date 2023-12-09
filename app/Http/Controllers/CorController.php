@@ -77,7 +77,7 @@ class CorController extends Controller
 
     public function confirma_delete_cor($id)
     {
-        $cor = Cor::find($id);
+        $cor = Cor::findOrFail($id);
         return view('logado.gerenciador.cores.confirma_delete_cor', ['id' => $id, 'cor' => $cor]);
     }
 }

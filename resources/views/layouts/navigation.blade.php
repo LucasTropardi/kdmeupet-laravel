@@ -44,6 +44,15 @@
                         </x-nav-link>
                     </div>
                 @endcan
+
+                <!-- Raças gerenciador -->
+                @can('level')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('raca.index')" :active="request()->routeIs('raca.index')">
+                            <i class="fa-solid fa-paw" title="Raças"></i>
+                        </x-nav-link>
+                    </div>
+                @endcan
             </div>
 
             <!-- Settings Dropdown -->

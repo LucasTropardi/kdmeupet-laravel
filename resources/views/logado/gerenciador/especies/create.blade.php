@@ -19,7 +19,7 @@
                                     <!-- User -->
                                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
-                                    <!-- Cor -->
+                                    <!-- Espécie -->
                                     <div>
                                         <x-input-label for="esNome" :value="__('Espécie*')" />
                                         <x-text-input id="esNome" class="block mt-1 w-full" type="text" name="esNome" :value="old('esNome')" required autofocus autocomplete="esNome" />

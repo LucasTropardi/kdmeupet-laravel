@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('racas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('especie_id')->constrained();
             $table->string('racaNome');
             $table->timestamps();

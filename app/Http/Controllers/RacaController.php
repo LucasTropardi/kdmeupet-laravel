@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Raca;
 use App\Http\Controllers\Controller;
+use App\Models\Especie;
 use Illuminate\Http\Request;
 
 class RacaController extends Controller
@@ -13,7 +14,9 @@ class RacaController extends Controller
      */
     public function index()
     {
-        //
+        return view('logado.gerenciador.racas.index', [
+            'racas' => Raca::orderByDesc('created_at')->paginate('5'),
+        ]);
     }
 
     /**
@@ -21,7 +24,9 @@ class RacaController extends Controller
      */
     public function create()
     {
-        //
+        $especies = Especie::pluck('esNome', 'id');
+
+        return view('logado.gerenciador.racas.create', ['especies' => $especies]);
     }
 
     /**
@@ -29,7 +34,13 @@ class RacaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $raca = new Raca();
+        $raca->especie_id = $request->especie_id;
+        $raca->user_id = $request->user_id;
+        $raca->racaNome = $request->racaNome;
+
+        $raca->save();
+        return redirect(route('raca.index'));
     }
 
     /**
@@ -37,7 +48,9 @@ class RacaController extends Controller
      */
     public function show(Raca $raca)
     {
-        //
+        return view('logado.gerenciador.racas.show', [
+            'raca' => $raca,
+        ]);
     }
 
     /**
@@ -45,15 +58,21 @@ class RacaController extends Controller
      */
     public function edit(Raca $raca)
     {
-        //
+        $especies = Especie::pluck('esNome', 'id');
+        return view('logado.gerenciador.racas.edit', [
+            'raca' => $raca,
+            'especies' => $especies,
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Raca $raca)
     {
-        //
+        Raca::findOrFail($raca->id)->update($request->all());
+        return redirect(route('raca.index'));
     }
 
     /**
@@ -61,6 +80,13 @@ class RacaController extends Controller
      */
     public function destroy(Raca $raca)
     {
-        //
+        Raca::findOrFail($raca->id)->delete();
+        return redirect(route('raca.index'));
+    }
+
+    public function confirma_delete_raca($id)
+    {
+        $raca = Raca::findOrFail($id);
+        return view('logado.gerenciador.racas.confirma_delete_raca', ['id' => $id, 'raca' => $raca]);
     }
 }

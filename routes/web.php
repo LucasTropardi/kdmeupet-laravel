@@ -3,6 +3,7 @@
 use App\Http\Controllers\CorController;
 use App\Http\Controllers\EspecieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RacaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,14 @@ Route::resources([
 
 Route::get('confirma-delete-especie/{id}', [EspecieController::class, 'confirma_delete_especie'])
     ->name('confirma.delete.especie');
+
+// Rotas para raças
+Route::resources([
+    'raca' => RacaController::class,
+]);
+
+Route::get('confirma-dedlete-raca/{id}', [RacaController::class, 'confirma_delete_raca'])
+    ->name('confirma.delete.raca');
 
 // Dashboard do usuário
 Route::get('/dashboard', function () {

@@ -77,7 +77,7 @@ class EspecieController extends Controller
 
     public function confirma_delete_especie($id)
     {
-        $especie = Especie::find($id);
+        $especie = Especie::findOrFail($id);
         return view('logado.gerenciador.especies.confirma_delete_especie', ['id' => $id, 'especie' => $especie]);
     }
 }
