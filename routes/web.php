@@ -4,6 +4,7 @@ use App\Http\Controllers\CorController;
 use App\Http\Controllers\EspecieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RacaController;
+use App\Http\Controllers\TamanhoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,14 @@ Route::resources([
 
 Route::get('confirma-dedlete-raca/{id}', [RacaController::class, 'confirma_delete_raca'])
     ->name('confirma.delete.raca');
+
+// Rotas para tamanhos
+Route::resources([
+    'tamanho' => TamanhoController::class,
+]);
+
+Route::get('confirma-delete-tamanho/{id}', [TamanhoController::class, 'confirma_delete_tamanho'])
+    ->name('confirma.delete.tamanho');
 
 // Dashboard do usuário
 Route::get('/dashboard', function () {

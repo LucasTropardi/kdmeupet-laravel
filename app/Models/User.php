@@ -48,12 +48,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function cor()
+    public function cor(): HasMany
     {
         return $this->hasMany(Cor::class, 'user_id', 'id');
     }
 
-    public function especie()
+    public function especie():HasMany
     {
         return $this->hasMany(Especie::class, 'user_id', 'id');
     }
@@ -61,5 +61,10 @@ class User extends Authenticatable
     public function racas(): HasMany
     {
         return $this->hasMany(Raca::class, 'user_id', 'id');
+    }
+
+    public function tamanhos(): HasMany
+    {
+        return $this->hasMany(Tamanho::class, 'user_id', 'id');
     }
 }

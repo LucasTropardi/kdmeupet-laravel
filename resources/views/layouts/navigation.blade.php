@@ -53,6 +53,15 @@
                         </x-nav-link>
                     </div>
                 @endcan
+
+                <!-- Tamanhos gerenciador -->
+                @can('level')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('tamanho.index')" :active="request()->routeIs('tamanho.index')">
+                            <i class="fa-solid fa-up-right-and-down-left-from-center" title="Tamanhos"></i>
+                        </x-nav-link>
+                    </div>
+                @endcan
             </div>
 
             <!-- Settings Dropdown -->
