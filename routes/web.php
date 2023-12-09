@@ -4,6 +4,7 @@ use App\Http\Controllers\CorController;
 use App\Http\Controllers\EspecieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RacaController;
+use App\Http\Controllers\SituacaoController;
 use App\Http\Controllers\TamanhoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,14 @@ Route::resources([
 
 Route::get('confirma-delete-tamanho/{id}', [TamanhoController::class, 'confirma_delete_tamanho'])
     ->name('confirma.delete.tamanho');
+
+// Rotas para situações
+Route::resources([
+    'situacao' => SituacaoController::class,
+]);
+
+Route::get('confirma-delete-situacao/{id}', [SituacaoController::class, 'confirma_delete_situacao'])
+    ->name('confirma.delete.situacao');
 
 // Dashboard do usuário
 Route::get('/dashboard', function () {

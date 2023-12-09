@@ -13,7 +13,9 @@ class SituacaoController extends Controller
      */
     public function index()
     {
-        //
+        return view('logado.gerenciador.situacoes.index', [
+            'situacoes' => Situacao::orderByDesc('created_at')->paginate('5'),
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class SituacaoController extends Controller
      */
     public function create()
     {
-        //
+        return view('logado.gerenciador.situacoes.create');
     }
 
     /**
@@ -29,7 +31,12 @@ class SituacaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $situacao = new Situacao();
+        $situacao->user_id = $request->user_id;
+        $situacao->situacao = $request->situacao;
+
+        $situacao->save();
+        return redirect(route('situacao.index'));
     }
 
     /**
@@ -45,7 +52,7 @@ class SituacaoController extends Controller
      */
     public function edit(Situacao $situacao)
     {
-        //
+        return view('logado.gerenciador.situacoes.edit', ['situacao' => $situacao]);
     }
 
     /**
@@ -53,7 +60,8 @@ class SituacaoController extends Controller
      */
     public function update(Request $request, Situacao $situacao)
     {
-        //
+        Situacao::findOrFail($situacao->id)->update($request->all());
+        return redirect(route('situacao.index'));
     }
 
     /**
@@ -61,6 +69,13 @@ class SituacaoController extends Controller
      */
     public function destroy(Situacao $situacao)
     {
-        //
+        Situacao::findOrFail($situacao->id)->delete();
+        return redirect(route('situacao.index'));
+    }
+
+    public function confirma_delete_situacao($id)
+    {
+        $situacao = Situacao::findOrFail($id);
+        return view('logado.gerenciador.situacoes.confirma_delete_situacao', ['id' => $id, 'situacao' => $situacao]);
     }
 }

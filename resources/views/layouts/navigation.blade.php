@@ -62,6 +62,15 @@
                         </x-nav-link>
                     </div>
                 @endcan
+
+                <!-- Situações gerenciador -->
+                @can('level')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('situacao.index')" :active="request()->routeIs('situacao.index')">
+                            <i class="fa-regular fa-circle-question" title="Situações"></i>
+                        </x-nav-link>
+                    </div>
+                @endcan
             </div>
 
             <!-- Settings Dropdown -->

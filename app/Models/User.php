@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tamanho::class, 'user_id', 'id');
     }
+
+    public function situacoes(): HasMany
+    {
+        return $this->hasMany(Situacao::class, 'user_id', 'id');
+    }
 }
