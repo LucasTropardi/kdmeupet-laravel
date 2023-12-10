@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CorController extends Controller
 {
@@ -31,6 +32,13 @@ class CorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id' => 'required|integer',
+            'cor'     => 'required|string|max:255|unique:cors,cor',
+        ], [
+            'cor.unique' => 'Cor já cadastrada'
+        ]);
+
         $cor = new Cor();
         $cor->user_id = $request->user_id;
         $cor->cor = $request->cor;
@@ -62,7 +70,23 @@ class CorController extends Controller
      */
     public function update(Request $request, Cor $cor)
     {
-        Cor::findOrFail($cor->id)->update($request->all());
+        $request->validate([
+            'user_id' => 'required|integer',
+            'cor'     => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('cors')->ignore($cor->id),
+            ],
+        ], [
+            'cor.unique' => 'Cor já cadastrada'
+        ]);
+
+        $cor->update([
+            'user_id' => $request->user_id,
+            'cor' => $request->cor,
+        ]);
+
         return redirect(route('cor.index'));
     }
 

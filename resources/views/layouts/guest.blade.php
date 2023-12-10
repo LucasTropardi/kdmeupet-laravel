@@ -11,6 +11,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        {{-- Leaflet css --}}
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+
         {{-- Ícones fontawesome --}}
         <script src="https://kit.fontawesome.com/352682b758.js" crossorigin="anonymous"></script>
 
@@ -19,15 +24,16 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navbar')
-
+            <div class="mb-14">
+                @include('layouts.navbar')
+            </div>
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-gray-100 shadow">
                     <div class="py-8">
                         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                             <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg">
-                                <div class="p-6 text-gray-900 mb-2">
+                                <div class="p-6 text-gray-900">
                                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                                         {{ $header }}
                                     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Especie;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class EspecieController extends Controller
 {
@@ -31,6 +32,13 @@ class EspecieController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id' => 'required|integer',
+            'esNome'  => 'required|string|max:255|unique:especies,esNome',
+        ], [
+            'esNome.unique' => 'Espécie já cadastrada.'
+        ]);
+
         $especie = new Especie();
         $especie->user_id = $request->user_id;
         $especie->esNome = $request->esNome;
@@ -62,7 +70,23 @@ class EspecieController extends Controller
      */
     public function update(Request $request, Especie $especie)
     {
-        Especie::findOrFail($especie->id)->update($request->all());
+        $request->validate([
+            'user_id' => 'required|integer',
+            'esNome'  => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('especies')->ignore($especie->id),
+            ],
+        ], [
+            'esNome.unique' => 'Espécie já cadastrada.'
+        ]);
+
+        $especie->update([
+            'user_id' => $request->user_id,
+            'esNome'  => $request->esNome,
+        ]);
+
         return redirect(route('especie.index'));
     }
 

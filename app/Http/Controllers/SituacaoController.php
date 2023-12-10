@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Situacao;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SituacaoController extends Controller
 {
@@ -31,6 +32,13 @@ class SituacaoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id' => 'required|integer',
+            'situacao'   => 'required|string|max:255|unique:situacaos,situacao',
+        ], [
+            'situacao.unique' => 'Situação já cadastrada',
+        ]);
+
         $situacao = new Situacao();
         $situacao->user_id = $request->user_id;
         $situacao->situacao = $request->situacao;
@@ -60,7 +68,23 @@ class SituacaoController extends Controller
      */
     public function update(Request $request, Situacao $situacao)
     {
-        Situacao::findOrFail($situacao->id)->update($request->all());
+        $request->validate([
+            'user_id' => 'required|integer',
+            'situacao'  => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('situacaos')->ignore($situacao->id),
+            ],
+        ], [
+            'situacao.unique' => 'Situação já cadastrada.'
+        ]);
+
+        $situacao->update([
+            'user_id' => $request->user_id,
+            'situacao'  => $request->situacao,
+        ]);
+
         return redirect(route('situacao.index'));
     }
 

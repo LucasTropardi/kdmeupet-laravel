@@ -3,6 +3,7 @@
 use App\Http\Controllers\CorController;
 use App\Http\Controllers\EspecieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicRoutesController;
 use App\Http\Controllers\RacaController;
 use App\Http\Controllers\SituacaoController;
 use App\Http\Controllers\TamanhoController;
@@ -14,78 +15,68 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Rotas Públicas
-Route::view('home', 'public.home')->name('home');
+Route::get('home', [PublicRoutesController::class, 'home'])
+    ->name('home');
 
-Route::get('/', function () {
-    return view('public.home');
-});
+Route::get('/', [PublicRoutesController::class, 'home']);
 
-Route::view('achados', 'public.achados')
+Route::get('achados', [PublicRoutesController::class, 'achados'])
     ->name('achados');
 
-Route::view('perdidos', 'public.perdidos')
+Route::get('perdidos', [PublicRoutesController::class, 'perdidos'])
     ->name('perdidos');
 
-Route::view('localizacoes', 'public.localizacoes')
+Route::get('localizacoes', [PublicRoutesController::class, 'localizacoes'])
     ->name('localizacoes');
 
-Route::view('parcerias', 'public.parcerias')
+Route::get('parcerias', [PublicRoutesController::class, 'parcerias'])
     ->name('parcerias');
 
-Route::view('adocoes', 'public.adocoes')
+Route::get('adocoes', [PublicRoutesController::class, 'adocoes'])
     ->name('adocoes');
 
-// Rotas com autenticação
-// Gerenciadores
-Route::get('users-index', [UserController::class, 'index'])
-    ->name('user.index');
+Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
+    // Rotas com autenticação Gerenciadores
+    Route::get('users-index', [UserController::class, 'index'])->name('user.index');
+    Route::get('user-edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('user-update/{id}', [UserController::class, 'update'])->name('user.update');
 
-Route::get('user-edit/{id}', [UserController::class, 'edit'])
-    ->name('user.edit');
+    // Rotas para Cores
+    Route::resources([
+        'cor' => CorController::class,
+    ]);
+    Route::get('confirma-delete-cor/{id}', [CorController::class, 'confirma_delete_cor'])
+        ->name('confirma.delete.cor');
 
-Route::put('user-update/{id}', [UserController::class, 'update'])
-    ->name('user.update');
+    // Rotas para espécies
+    Route::resources([
+        'especie' => EspecieController::class,
+    ]);
+    Route::get('confirma-delete-especie/{id}', [EspecieController::class, 'confirma_delete_especie'])
+        ->name('confirma.delete.especie');
 
+    // Rotas para raças
+    Route::resources([
+        'raca' => RacaController::class,
+    ]);
+    Route::get('confirma-dedlete-raca/{id}', [RacaController::class, 'confirma_delete_raca'])
+        ->name('confirma.delete.raca');
 
-// Rotas para Cores
-Route::resources([
-    'cor' => CorController::class,
-]);
+    // Rotas para tamanhos
+    Route::resources([
+        'tamanho' => TamanhoController::class,
+    ]);
+    Route::get('confirma-delete-tamanho/{id}', [TamanhoController::class, 'confirma_delete_tamanho'])
+        ->name('confirma.delete.tamanho');
 
-Route::get('confirma-delete-cor/{id}', [CorController::class, 'confirma_delete_cor'])
-    ->name('confirma.delete.cor');
+    // Rotas para situações
+    Route::resources([
+        'situacao' => SituacaoController::class,
+    ]);
 
-// Rotas para espécies
-Route::resources([
-    'especie' => EspecieController::class,
-]);
-
-Route::get('confirma-delete-especie/{id}', [EspecieController::class, 'confirma_delete_especie'])
-    ->name('confirma.delete.especie');
-
-// Rotas para raças
-Route::resources([
-    'raca' => RacaController::class,
-]);
-
-Route::get('confirma-dedlete-raca/{id}', [RacaController::class, 'confirma_delete_raca'])
-    ->name('confirma.delete.raca');
-
-// Rotas para tamanhos
-Route::resources([
-    'tamanho' => TamanhoController::class,
-]);
-
-Route::get('confirma-delete-tamanho/{id}', [TamanhoController::class, 'confirma_delete_tamanho'])
-    ->name('confirma.delete.tamanho');
-
-// Rotas para situações
-Route::resources([
-    'situacao' => SituacaoController::class,
-]);
-
-Route::get('confirma-delete-situacao/{id}', [SituacaoController::class, 'confirma_delete_situacao'])
-    ->name('confirma.delete.situacao');
+    Route::get('confirma-delete-situacao/{id}', [SituacaoController::class, 'confirma_delete_situacao'])
+        ->name('confirma.delete.situacao');
+});
 
 // Dashboard do usuário
 Route::get('/dashboard', function () {

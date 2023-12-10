@@ -6,6 +6,7 @@ use App\Models\Tamanho;
 use App\Http\Controllers\Controller;
 use App\Models\Especie;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TamanhoController extends Controller
 {
@@ -34,6 +35,21 @@ class TamanhoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id'    => 'required|integer',
+            'especie_id' => 'required|integer',
+            'tamanho'    => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('tamanhos')->where(function ($query) use ($request) {
+                    return $query->where('especie_id', $request->especie_id);
+                }),
+            ],
+        ], [
+            'tamanho.unique' => 'Tamanho já cadastrado para a espécie.',
+        ]);
+
         $tamanho = new Tamanho();
         $tamanho->especie_id = $request->especie_id;
         $tamanho->user_id = $request->user_id;
@@ -70,7 +86,27 @@ class TamanhoController extends Controller
      */
     public function update(Request $request, Tamanho $tamanho)
     {
-        Tamanho::findOrFail($tamanho->id)->update($request->all());
+        $request->validate([
+            'user_id'    => 'required|integer',
+            'especie_id' => 'required|integer',
+            'tamanho'    => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('tamanhos')->where(function ($query) use ($request) {
+                    return $query->where('especie_id', $request->especie_id);
+                })->ignore($tamanho->id),
+            ],
+        ], [
+            'tamanho.unique' => 'Tamanho já cadastrado para a espécie.',
+        ]);
+
+        $tamanho->update([
+            'user_id' => $request->user_id,
+            'especie_id' => $request->especie_id,
+            'tamanho' => $request->tamanho,
+        ]);
+
         return redirect(route('tamanho.index'));
     }
 

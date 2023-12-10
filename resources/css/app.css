@@ -5,3 +5,16 @@
 .butao {
     background-color: #00008B;
 }
+
+.fixed-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+}
+
+#map {
+    
+    height: 432px;
+}

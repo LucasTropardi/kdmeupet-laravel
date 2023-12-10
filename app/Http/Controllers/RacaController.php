@@ -6,6 +6,7 @@ use App\Models\Raca;
 use App\Http\Controllers\Controller;
 use App\Models\Especie;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RacaController extends Controller
 {
@@ -34,10 +35,25 @@ class RacaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id'    => 'required|integer',
+            'especie_id' => 'required|integer',
+            'racaNome'    => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('racas')->where(function ($query) use ($request) {
+                    return $query->where('especie_id', $request->especie_id);
+                }),
+            ],
+        ], [
+            'racaNome.unique' => 'Raça já cadastrada.',
+        ]);
+
         $raca = new Raca();
         $raca->especie_id = $request->especie_id;
-        $raca->user_id = $request->user_id;
-        $raca->racaNome = $request->racaNome;
+        $raca->user_id    = $request->user_id;
+        $raca->racaNome   = $request->racaNome;
 
         $raca->save();
         return redirect(route('raca.index'));
@@ -60,7 +76,7 @@ class RacaController extends Controller
     {
         $especies = Especie::pluck('esNome', 'id');
         return view('logado.gerenciador.racas.edit', [
-            'raca' => $raca,
+            'raca'     => $raca,
             'especies' => $especies,
         ]);
     }
@@ -71,7 +87,27 @@ class RacaController extends Controller
      */
     public function update(Request $request, Raca $raca)
     {
-        Raca::findOrFail($raca->id)->update($request->all());
+        $request->validate([
+            'user_id'    => 'required|integer',
+            'especie_id' => 'required|integer',
+            'racaNome'   => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('racas')->where(function ($query) use ($request) {
+                    return $query->where('especie_id', $request->especie_id);
+                })->ignore($raca->id),
+            ],
+        ], [
+            'racaNome.unique' => 'Raça já cadastrada.',
+        ]);
+
+        $raca->update([
+            'user_id'    => $request->user_id,
+            'especie_id' => $request->especie_id,
+            'racaNome'   => $request->racaNome,
+        ]);
+
         return redirect(route('raca.index'));
     }
 

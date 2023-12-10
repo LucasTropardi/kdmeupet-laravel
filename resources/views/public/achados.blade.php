@@ -1,10 +1,10 @@
 <x-guest-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Página de achados') }}
+            {{ __('Achados') }}
         </h2>
     </x-slot>
-    @section('title','Dashboard')
+    @section('title','Achados')
     @include('partials.bannertop')
 
     <div class="py-12">
