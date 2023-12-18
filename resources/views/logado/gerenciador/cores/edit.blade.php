@@ -8,7 +8,7 @@
     @include('partials.bannertop')
     <div class="py-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sl sm:rounded-lg">
+            <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg">
                 <div class="p-6 text-gray-900" id="form-cadastrare">
                     <div class="flex flex-col items-center pt-2 sm:pt-0" id="div-cadastrar">
                         <div class="w-full sm:max-w-md mt-2 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mb-12" id="form-cadastrar">
@@ -17,9 +17,6 @@
                                 <form action="{{ route('cor.update', $cor->id) }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <!-- User -->
-                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-
                                     <!-- Cor -->
                                     <div>
                                         <x-input-label for="cor" :value="__('Cor*')" />

@@ -22,7 +22,7 @@ class Tamanho extends Model
         return $this->belongsTo(Especie::class, 'especie_id', 'id');
     }
 
-    public function animais(): HasMany
+    public function animals(): HasMany
     {
         return $this->hasMany(Animal::class, 'tamanho_id', 'id');
     }

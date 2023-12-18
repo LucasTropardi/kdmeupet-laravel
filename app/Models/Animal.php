@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Animal extends Model
 {
@@ -11,20 +13,20 @@ class Animal extends Model
 
     protected $fillable = [
         'user_id', // int
-        'anNome', // string
-        'anFoto', // string
-        'anDescricao', // string
-        'anData', // string date
+        'situacao_id', // int
         'especie_id', // int
         'raca_id', // int
-        'tamanho_id', // int
         'cor_id', // int
-        'anEndereco', // string
-        'situacao_id', // int
-        'anFinalizado', // int
+        'tamanho_id', // int
+        'anNome', // string
+        'anDescricao', // string
+        'anFoto', // string
         'anContato', // string
+        'anData', // string date
+        'anEndereco', // string
         'latitude', // string
         'longitude', // string
+        'anFinalizado', // int
     ];
 
     public function user()
@@ -34,26 +36,26 @@ class Animal extends Model
 
     public function especie()
     {
-        $this->belongsTo(Especie::class, 'especie_id', 'id');
+        return $this->belongsTo(Especie::class, 'especie_id', 'id');
     }
 
     public function raca()
     {
-        $this->belongsTo(Raca::class, 'raca_id', 'id');
+        return $this->belongsTo(Raca::class, 'raca_id', 'id');
     }
 
     public function situacao()
     {
-        $this->belongsTo(Situacao::class, 'situacao_id', 'id');
+        return $this->belongsTo(Situacao::class, 'situacao_id', 'id');
     }
 
     public function cor()
     {
-        $this->belongsTo(Cor::class, 'cor_id', 'id');
+        return $this->belongsTo(Cor::class, 'cor_id', 'id');
     }
 
     public function tamanho()
     {
-        $this->belongsTo(Tamanho::class, 'cor_id', 'id');
+        return $this->belongsTo(Tamanho::class, 'tamanho_id', 'id');
     }
 }

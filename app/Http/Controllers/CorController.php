@@ -33,14 +33,12 @@ class CorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|integer',
             'cor'     => 'required|string|max:255|unique:cors,cor',
         ], [
             'cor.unique' => 'Cor já cadastrada'
         ]);
 
         $cor = new Cor();
-        $cor->user_id = $request->user_id;
         $cor->cor = $request->cor;
 
         $cor->save();
@@ -71,7 +69,6 @@ class CorController extends Controller
     public function update(Request $request, Cor $cor)
     {
         $request->validate([
-            'user_id' => 'required|integer',
             'cor'     => [
                 'required',
                 'string',
@@ -83,7 +80,6 @@ class CorController extends Controller
         ]);
 
         $cor->update([
-            'user_id' => $request->user_id,
             'cor' => $request->cor,
         ]);
 

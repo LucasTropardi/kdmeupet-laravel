@@ -1,16 +1,23 @@
-// Mapa de cadastro animal
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
+<script>
+    // Mapa edição animal
 document.addEventListener('DOMContentLoaded', function () {
     var southWest = L.latLng(-21.465, -50.15);
     var northEast = L.latLng(-21.385, -49.99);
     var bounds = L.latLngBounds(southWest, northEast);
 
+    var defaultLatitude = {{ $animal->latitude }};
+    var defaultLongitude = {{ $animal->longitude }};
+
     var map = L.map('map', {
         maxBounds: bounds,
         maxZoom: 18,
         minZoom: 12
-    }).setView([-21.41908221945518, -50.07632303277206], 13);
+    }).setView([defaultLatitude, defaultLongitude], 13); // Definindo a posição inicial do mapa com base nas coordenadas do animal
 
-    var marker = null;
+    var marker = L.marker([defaultLatitude, defaultLongitude]).addTo(map); // Adicionando marcador na posição do animal
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -31,3 +38,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+</script>

@@ -21,6 +21,9 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 
+        <!-- Datepicker -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css">
+
         {{-- Ícones fontawesome --}}
         <script src="https://kit.fontawesome.com/352682b758.js" crossorigin="anonymous"></script>
 
@@ -29,16 +32,16 @@
     </head>
     <body class="font-sans antialiased bg-gray-100">
         <div class="min-h-screen bg-gray-100">
-
-
-            @include('layouts.navigation')
+            <div class="mb-14">
+                @include('layouts.navigation')
+            </div>
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-gray-100 shadow">
+                <header class="bg-gray-100">
                     <div class="py-8">
                         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg">
                                 <div class="p-6 text-gray-900 mb-2">
                                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                                         {{ $header }}
@@ -55,5 +58,9 @@
                 {{ $slot }}
             </main>
         </div>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js"></script>
     </body>
 </html>

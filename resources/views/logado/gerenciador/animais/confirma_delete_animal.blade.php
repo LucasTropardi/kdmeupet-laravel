@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Excluir raça') }}
+            {{ __('Excluir animal') }}
         </h2>
     </x-slot>
-    @section('title','Excluir raça')
+    @section('title','Excluir animal')
     @include('partials.bannertop')
 
     <div class="py-12">
@@ -12,10 +12,10 @@
             <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <p class="mb-4">Olá, <strong>{{ Auth::user()->name }}</strong>!</p>
-                    <p class="mb-4">Confirma a exclusão da raça {{ $raca->racaNome }}?</p>
+                    <p class="mb-4">Confirma a exclusão do animal {{ $animal->anNome }}?</p>
                 </div>
                 <div>
-                    <form action="{{ route('raca.destroy', $raca->id) }}" method="post">
+                    <form action="{{ route('animal-gerenciador.destroy', $animal->id) }}" method="post">
                         @csrf
                         @method('DELETE')
 

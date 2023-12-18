@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\AnimalGerenciadorController;
+use App\Http\Controllers\AuthenticatedRoutesController;
 use App\Http\Controllers\CorController;
 use App\Http\Controllers\EspecieController;
 use App\Http\Controllers\ProfileController;
@@ -35,8 +38,9 @@ Route::get('parcerias', [PublicRoutesController::class, 'parcerias'])
 Route::get('adocoes', [PublicRoutesController::class, 'adocoes'])
     ->name('adocoes');
 
+// Rotas com autenticação Gerenciadores
 Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
-    // Rotas com autenticação Gerenciadores
+    // Rotas para users
     Route::get('users-index', [UserController::class, 'index'])->name('user.index');
     Route::get('user-edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('user-update/{id}', [UserController::class, 'update'])->name('user.update');
@@ -73,16 +77,38 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
     Route::resources([
         'situacao' => SituacaoController::class,
     ]);
-
     Route::get('confirma-delete-situacao/{id}', [SituacaoController::class, 'confirma_delete_situacao'])
         ->name('confirma.delete.situacao');
+
+    // Rotas para animais
+    Route::resources([
+        'animal-gerenciador' => AnimalGerenciadorController::class,
+    ]);
+    Route::get('confirma-delete-animal/{id}', [AnimalGerenciadorController::class, 'confirma_delete_animal'])
+        ->name('confirma.delete.animal');
+    Route::delete('animal-gerenciador.destroy/{animal}', [AnimalGerenciadorController::class, 'destroy'])
+        ->name('animal-gerenciador.destroy');
+    Route::put('reativar-publicacao/{id}', [AnimalGerenciadorController::class, 'atualizar'])
+        ->name('reativar.publicacao');
 });
 
-// Dashboard do usuário
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Rotas de usuários
+Route::middleware(['auth', 'verified',])->group(function () {
+    Route::get('dashboard', [AuthenticatedRoutesController::class, 'dashboard'])
+        ->name('dashboard');
 
+    Route::resources([
+        'animal' => AnimalController::class,
+    ]);
+});
+
+// Rotas auxiliares para cadastro animal
+Route::get('/buscar-racas', [AnimalController::class, 'buscarRacas']);
+Route::get('/buscar-tamanhos', [AnimalController::class, 'buscarTamanhos']);
+Route::put('finalizar-publicacao/{id}', [AnimalController::class, 'atualizar'])
+    ->name('finalizar.publicacao');
+
+// Rotas logadas de usuários, vem do breeze
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
