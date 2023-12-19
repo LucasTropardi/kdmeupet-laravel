@@ -3,23 +3,88 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Animal;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PublicRoutesController extends Controller
 {
     public function home()
     {
-        return view('public.home');
+        $countAchados = Animal::where('situacao_id', 4)
+            ->where('anFinalizado', 0)
+            ->count();
+
+        $limitaAchados = 0;
+
+        if ($countAchados >= 2 && $countAchados <= 4) {
+            $limitaAchados = 2;
+        } else {
+            $limitaAchados = 5;
+        }
+
+        $countPerdidos = Animal::where('situacao_id', 3)
+        ->where('anFinalizado', 0)
+        ->count();
+
+        $limitaPerdidos = 0;
+
+        if ($countPerdidos >= 2 && $countPerdidos <= 4) {
+            $limitaPerdidos = 2;
+        } else {
+            $limitaPerdidos = 5;
+        }
+
+        $achados = Animal::where('situacao_id', 4)
+            ->where('anFinalizado', 0)
+            ->orderBy('anData', 'desc')
+            ->limit($limitaAchados)
+            ->get();
+
+        $perdidos = Animal::where('situacao_id', 3)
+            ->where('anFinalizado', 0)
+            ->orderBy('anData', 'desc')
+            ->limit($limitaPerdidos)
+            ->get();
+
+        return view('public.home', [
+            'achados'  => $achados,
+            'perdidos' => $perdidos,
+        ]);
     }
 
     public function achados()
     {
-        return view('public.achados');
+        $animais = Animal::where('situacao_id', 4)
+            ->where('anFinalizado', 0)
+            ->orderBy('anData', 'desc')
+            ->paginate(9);
+
+        return view('public.achados', [
+            'animais' => $animais,
+        ]);
     }
 
     public function perdidos()
     {
-        return view('public.perdidos');
+        $animais = Animal::where('situacao_id', 3)
+            ->where('anFinalizado', 0)
+            ->orderBy('anData', 'desc')
+            ->paginate(9);
+
+        return view('public.perdidos', [
+            'animais' => $animais,
+        ]);
+    }
+
+    public function ver_animal($id)
+    {
+        $animal = Animal::findOrFail($id);
+        $dataCadastrada = Carbon::parse($animal->anData)->format('d/m/Y');
+        return view('public.ver_animal', [
+            'animal' => $animal,
+            'dataCadastrada' => $dataCadastrada,
+        ]);
     }
 
     public function parcerias()

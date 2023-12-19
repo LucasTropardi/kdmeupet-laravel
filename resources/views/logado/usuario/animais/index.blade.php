@@ -36,9 +36,6 @@
                     <tbody>
                         @foreach ($animais as $animal)
                             <tr class="hover:bg-gray-100">
-                                @php
-
-                                @endphp
                                 <td class="text-center">
                                     @if ($animal->anFinalizado !== 1)
                                         {{ $animal->situacao->situacao }}

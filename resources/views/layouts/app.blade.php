@@ -7,6 +7,7 @@
 
         <title>@yield('title')</title>
 
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -58,6 +59,7 @@
                 {{ $slot }}
             </main>
         </div>
+        @include('partials.js.js-modals-logado')
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>

@@ -38,6 +38,9 @@ Route::get('parcerias', [PublicRoutesController::class, 'parcerias'])
 Route::get('adocoes', [PublicRoutesController::class, 'adocoes'])
     ->name('adocoes');
 
+Route::get('ver-animal/{id}', [PublicRoutesController::class, 'ver_animal'])
+    ->name('ver.animal');
+
 // Rotas com autenticação Gerenciadores
 Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
     // Rotas para users

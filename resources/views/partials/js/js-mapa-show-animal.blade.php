@@ -4,12 +4,19 @@
     var animalLongitude = {!! json_encode($animal->longitude ?? null) !!};
 
     document.addEventListener('DOMContentLoaded', function () {
-        if (animalLatitude !== null && animalLongitude !== null) {
-            var mapShow = L.map('mapa', {
-                maxZoom: 18,
-                minZoom: 12
-            }).setView([animalLatitude, animalLongitude], 13);
+        var southWest = L.latLng(-21.465, -50.15);
+        var northEast = L.latLng(-21.385, -49.99);
+        var bounds = L.latLngBounds(southWest, northEast);
 
+        var mapShow = L.map('mapa', {
+            maxBounds: bounds,
+            maxZoom: 18,
+            minZoom: 12
+        });
+
+        mapShow.fitBounds(bounds); // Ajusta o mapa aos limites definidos
+
+        if (animalLatitude !== null && animalLongitude !== null) {
             var markerShow = L.marker([animalLatitude, animalLongitude]).addTo(mapShow);
 
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
