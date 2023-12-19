@@ -87,11 +87,6 @@
                                     <!-- Finalizado -->
                                     <input type="hidden" name="anFinalizado" value="0" >
 
-                                    {{-- <div class="flex items-center justify-end mt-10">
-                                        <button id="submitButton" type="button" class="butao hover:bg-blue-900 text-white p-2 rounded">
-                                            Salvar
-                                        </button>
-                                    </div> --}}
                                     <div class="flex items-center justify-end mt-10">
                                         <x-primary-button class="butao hover:bg-blue-900" >
                                             {{ __('Salvar') }}
