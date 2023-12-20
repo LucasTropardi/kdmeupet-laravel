@@ -85,6 +85,47 @@
                                     <div id="mapa" style="height: 400px;"></div>
                                 </div>
                             </div>
+                            {{-- Mensagem --}}
+                            @if(Session::has('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
+                            <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
+                                <p class="mb-4 text-xl text-center">Mensagens</p>
+                                @foreach ($mensagens as $mensagem)
+                                    <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
+                                        <p class="mt-2"><strong>{{ $mensagem->user->name . ' ' . $mensagem->user->lastName }}</strong> em {{ Carbon\Carbon::parse($mensagem->dataMensagem)->format('d/m/Y \à\s H:i') }}</p>
+                                        <p class="mt-4">{{ $mensagem->conteudoMensagem }}</p>
+                                    </div>
+                                @endforeach
+                                @if ($countMsg > 5)
+                                    <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
+                                        {{ $mensagens->links() }}
+                                    </div>
+                                @endif
+                            </div>
+                            <form action="{{ route('salvar.mensagem') }}" method="POST">
+                                @csrf
+                                <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
+                                    <!-- User -->
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
+                                    <!-- User -->
+                                    <input type="hidden" name="animal_id" value="{{ $animal->id }}">
+
+                                    {{-- Mensagem --}}
+                                    <x-input-label for="conteudoMensagem" :value="__('Escreva uma mensagem')" />
+                                    <x-textarea-input class="w-full block mt-1" rows="4" id="conteudoMensagem" type="text" name="conteudoMensagem" :value="old('conteudoMensagem')" autocomplete="conteudoMensagem">
+                                        {{-- Conteúdo padrão (se necessário) --}}
+                                    </x-textarea-input>
+                                </div>
+                                <div class="flex items-center justify-end mt-2">
+                                    <x-primary-button type="submit" class="butao hover:bg-blue-900" >
+                                        {{ __('Enviar') }}
+                                    </x-primary-button>
+                                </div>
+                            </form>
                             <div class="text-right mt-6">
                                 @if (Auth::user()->level === 'admin')
                                     <a href="{{ route('animal-gerenciador.index') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-1">Voltar</a>

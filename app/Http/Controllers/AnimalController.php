@@ -6,12 +6,14 @@ use App\Models\Animal;
 use App\Http\Controllers\Controller;
 use App\Models\Cor;
 use App\Models\Especie;
+use App\Models\Mensagem;
 use App\Models\Raca;
 use App\Models\Situacao;
 use App\Models\Tamanho;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AnimalController extends Controller
 {
@@ -110,10 +112,14 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
+        $mensagens = Mensagem::where('animal_id', $animal->id)->orderBy('dataMensagem', 'desc')->paginate(5);
+        $countMsg = Mensagem::where('animal_id', $animal->id)->count();
         $dataCadastrada = Carbon::parse($animal->anData)->format('d/m/Y');
         return view('logado.usuario.animais.show', [
-            'animal' => $animal,
+            'animal'         => $animal,
             'dataCadastrada' => $dataCadastrada,
+            'mensagens'      => $mensagens,
+            'countMsg'       => $countMsg,
         ]);
     }
 
@@ -208,6 +214,27 @@ class AnimalController extends Controller
         $animal->update($camposAtualizar);
 
         return redirect(route('animal.show', ['animal' => $animal]));
+    }
+
+    // metodo para salvar mensagem
+    public function salvar_mensagem(Request $request)
+    {
+
+        $request->validate([
+            'user_id'          => 'required|integer',
+            'animal_id'        => 'required|integer',
+            'conteudoMensagem' => 'required|string|max:600',
+        ]);
+
+        $mensagem = new Mensagem();
+        $mensagem->user_id          = $request->user_id;
+        $mensagem->animal_id        = $request->animal_id;
+        $mensagem->conteudoMensagem = $request->conteudoMensagem;
+        $mensagem->dataMensagem     = Carbon::now();
+
+        $mensagem->save();
+        Session::flash('success', 'Mensagem salva com sucesso!');
+        return back();
     }
 
     // método finalizar a postagem

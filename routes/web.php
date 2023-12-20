@@ -93,6 +93,8 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
         ->name('animal-gerenciador.destroy');
     Route::put('reativar-publicacao/{id}', [AnimalGerenciadorController::class, 'atualizar'])
         ->name('reativar.publicacao');
+    Route::post('salvar-mensagem', [AnimalController::class, 'salvar_mensagem'])
+        ->name('salvar.mensagem');
 });
 
 // Rotas de usuários

@@ -58,4 +58,9 @@ class Animal extends Model
     {
         return $this->belongsTo(Tamanho::class, 'tamanho_id', 'id');
     }
+
+    public function mensagem()
+    {
+        return $this->hasMany(Mensagem::class, 'animal_id', 'id');
+    }
 }
