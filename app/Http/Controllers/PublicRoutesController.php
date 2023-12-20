@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Animal;
+use App\Models\Mensagem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,8 @@ class PublicRoutesController extends Controller
         }
 
         $countPerdidos = Animal::where('situacao_id', 3)
-        ->where('anFinalizado', 0)
-        ->count();
+            ->where('anFinalizado', 0)
+            ->count();
 
         $limitaPerdidos = 0;
 
@@ -80,10 +81,16 @@ class PublicRoutesController extends Controller
     public function ver_animal($id)
     {
         $animal = Animal::findOrFail($id);
+        $mensagens = Mensagem::where('animal_id', $animal->id)
+            ->orderBy('dataMensagem', 'desc')
+            ->paginate(5);
+        $countMsg = Mensagem::where('animal_id', $animal->id)->count();
         $dataCadastrada = Carbon::parse($animal->anData)->format('d/m/Y');
         return view('public.ver_animal', [
-            'animal' => $animal,
+            'animal'         => $animal,
             'dataCadastrada' => $dataCadastrada,
+            'mensagens'      => $mensagens,
+            'countMsg'       => $countMsg,
         ]);
     }
 

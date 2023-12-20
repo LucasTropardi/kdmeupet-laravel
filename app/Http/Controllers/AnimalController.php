@@ -79,7 +79,7 @@ class AnimalController extends Controller
         ]);
 
         $imagem = $request->file('anFoto');
-        $nomeImagem = 'animal_' . time() . '.' . $imagem->getClientOriginalExtension();
+        $nomeImagem = 'animal_' . md5(uniqid(rand(), true)) . '.' . $imagem->getClientOriginalExtension();
         $caminho = $imagem->storeAs('public/uploads/animais', $nomeImagem);
         $nomeDaFoto = basename($caminho);
 

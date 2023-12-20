@@ -23,7 +23,7 @@
                             <img src="{{ asset('storage/uploads/animais/' . $animal->anFoto) }}" alt="Imagem do animal">
                         </div>
                         <p class="mt-4 text-center"><strong>{{ $animal->especie->esNome }}</strong></p>
-                        <a href=""><p class="text-right">Detalhes<i class="fa-regular fa-square-plus ml-2"></i></p></a>
+                        <a href="{{ route('ver.animal', $animal->id) }}"><p class="text-right">Detalhes<i class="fa-regular fa-square-plus ml-2"></i></p></a>
                     </div>
                 @endforeach
             </div>

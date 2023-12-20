@@ -75,6 +75,21 @@
                                     <div id="mapa" style="height: 400px;"></div>
                                 </div>
                                 <!-- div para os comentários -->
+                                <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
+                                    <p class="mb-2 text-xl text-center">Mensagens</p>
+                                    <p class="text-center">É necessário estar logado para escrever uma mensagem.</p>
+                                    @foreach ($mensagens as $mensagem)
+                                        <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
+                                            <p class="mt-2"><strong>{{ $mensagem->user->name . ' ' . $mensagem->user->lastName }}</strong> em {{ Carbon\Carbon::parse($mensagem->dataMensagem)->format('d/m/Y \à\s H:i') }}</p>
+                                            <p class="mt-4">{{ $mensagem->conteudoMensagem }}</p>
+                                        </div>
+                                    @endforeach
+                                    @if ($countMsg > 5)
+                                        <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
+                                            {{ $mensagens->links() }}
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
