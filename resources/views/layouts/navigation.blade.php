@@ -25,6 +25,20 @@
                     </x-nav-link>
                 </div>
 
+                <!-- Achados -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('logado.achados')" :active="request()->routeIs('logado.achados')">
+                        {{ __('Achados') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- Perdidos -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('logado.perdidos')" :active="request()->routeIs('logado.perdidos')">
+                        {{ __('Perdidos') }}
+                    </x-nav-link>
+                </div>
+
                 <!-- Users gerenciador -->
                 @can('level')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

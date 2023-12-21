@@ -56,6 +56,7 @@ class PublicRoutesController extends Controller
 
     public function achados()
     {
+        $countAnimais = Animal::where('situacao_id', 4)->count();
         $animais = Animal::where('situacao_id', 4)
             ->where('anFinalizado', 0)
             ->orderBy('anData', 'desc')
@@ -63,11 +64,13 @@ class PublicRoutesController extends Controller
 
         return view('public.achados', [
             'animais' => $animais,
+            'countAnimais' => $countAnimais,
         ]);
     }
 
     public function perdidos()
     {
+        $countAnimais = Animal::where('situacao_id', 3)->count();
         $animais = Animal::where('situacao_id', 3)
             ->where('anFinalizado', 0)
             ->orderBy('anData', 'desc')
@@ -75,6 +78,7 @@ class PublicRoutesController extends Controller
 
         return view('public.perdidos', [
             'animais' => $animais,
+            'countAnimais' => $countAnimais,
         ]);
     }
 

@@ -62,12 +62,13 @@
                                                 <td>Ativa</td>
                                             @endif
                                         </tr>
-                                        @can('level')
+                                        @if ($animal->user_id !== Auth::user()->id)
                                             <tr class="hover:bg-gray-100">
-                                                <td>Usuário</td>
+                                                <td>Cadastrado por</td>
                                                 <td>{{ $animal->user->name . ' ' . $animal->user->lastName }}</td>
                                             </tr>
-                                        @endcan
+                                        @endif
+
                                     </tbody>
                                 </table>
                                 <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
@@ -130,9 +131,15 @@
                                 @if (Auth::user()->level === 'admin')
                                     <a href="{{ route('animal-gerenciador.index') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-1">Voltar</a>
                                 @else
-                                    <a href="{{ route('animal.index') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-1">Voltar</a>
+                                    @if ($animal->user_id === Auth::user()->id)
+                                        <a href="{{ route('animal.index') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-1">Voltar</a>
+                                    @else
+                                        <a href="{{ route('dashboard') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-1">Voltar</a>
+                                    @endif
                                 @endif
-                                <a href="{{ route('animal.edit', $animal->id) }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Editar</a>
+                                @if ((Auth::user()->id === $animal->user_id) || (Auth::user()->level === 'admin'))
+                                    <a href="{{ route('animal.edit', $animal->id) }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Editar</a>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -83,7 +83,7 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
     Route::get('confirma-delete-situacao/{id}', [SituacaoController::class, 'confirma_delete_situacao'])
         ->name('confirma.delete.situacao');
 
-    // Rotas para animais
+    // Rotas para animais gerenciador
     Route::resources([
         'animal-gerenciador' => AnimalGerenciadorController::class,
     ]);
@@ -93,8 +93,7 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
         ->name('animal-gerenciador.destroy');
     Route::put('reativar-publicacao/{id}', [AnimalGerenciadorController::class, 'atualizar'])
         ->name('reativar.publicacao');
-    Route::post('salvar-mensagem', [AnimalController::class, 'salvar_mensagem'])
-        ->name('salvar.mensagem');
+
 });
 
 // Rotas de usuários
@@ -102,9 +101,22 @@ Route::middleware(['auth', 'verified',])->group(function () {
     Route::get('dashboard', [AuthenticatedRoutesController::class, 'dashboard'])
         ->name('dashboard');
 
+    // Rotas para animais
     Route::resources([
         'animal' => AnimalController::class,
     ]);
+
+    // salvar mensagem
+    Route::post('salvar-mensagem', [AnimalController::class, 'salvar_mensagem'])
+        ->name('salvar.mensagem');
+
+    // Achados
+    Route::get('logado-achados', [AuthenticatedRoutesController::class, 'achados'])
+        ->name('logado.achados');
+
+    // Perdidos
+    Route::get('logado-perdidos', [AuthenticatedRoutesController::class, 'perdidos'])
+        ->name('logado.perdidos');
 });
 
 // Rotas auxiliares para cadastro animal

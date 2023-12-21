@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <div><br></div>
     @section('title','Achados')
     @include('partials.bannertop')
@@ -7,7 +7,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg">
                 <div class="p-6 text-gray-900 mb-2">
-                    <p class="mb-4">Achou, miseravi!</p>
+                    <p class="mb-4">Achou, {{ Auth::user()->name }}!</p>
                 </div>
             </div>
             <div class="mt-4 grid grid-cols-3 gap-4">
@@ -18,7 +18,7 @@
                             <img src="{{ asset('storage/uploads/animais/' . $animal->anFoto) }}" alt="Imagem do animal">
                         </div>
                         <p class="mt-4 text-center"><strong>{{ $animal->especie->esNome }}</strong></p>
-                        <a href="{{ route('ver.animal', $animal->id) }}"><p class="text-right">Detalhes<i class="fa-regular fa-square-plus ml-2"></i></p></a>
+                        <a href="{{ route('animal.show', $animal->id) }}"><p class="text-right">Detalhes<i class="fa-regular fa-square-plus ml-2"></i></p></a>
                     </div>
                 @endforeach
             </div>
@@ -29,4 +29,4 @@
             @endif
         </div>
     </div>
-</x-guest-layout>
+</x-app-layout>

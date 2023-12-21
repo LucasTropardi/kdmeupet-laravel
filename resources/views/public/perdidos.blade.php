@@ -1,9 +1,4 @@
 <x-guest-layout>
-    {{-- <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Perdidos') }}
-        </h2>
-    </x-slot> --}}
     <div><br></div>
     @section('title','Perdidos')
     @include('partials.bannertop')
@@ -27,6 +22,11 @@
                     </div>
                 @endforeach
             </div>
+            @if ($countAnimais > 9)
+                <div class="p-3 bg-gray-100 rounded-lg mb-4 text-right">
+                    {{ $animais->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </x-guest-layout>
