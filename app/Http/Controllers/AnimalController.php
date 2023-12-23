@@ -237,6 +237,29 @@ class AnimalController extends Controller
         return back();
     }
 
+    //atualizar mensagem
+    public function atualizar_mensagem(Request $request, Mensagem $mensagem)
+    {
+        $request->validate([
+            'conteudoMensagem' => 'required|string|max:600',
+        ]);
+
+        $mensagem = Mensagem::findOrFail($request->id);
+        $mensagem->conteudoMensagem = $request->conteudoMensagem;
+        $mensagem->dataMensagem     = Carbon::now();
+
+        $mensagem->update();
+        Session::flash('success', 'Mensagem salva com sucesso!');
+        return back();
+    }
+
+    // excluir mensagem
+    public function apagar_mensagem(Mensagem $mensagem)
+    {
+        Mensagem::findOrFail($mensagem->id)->delete();
+        return back();
+    }
+
     // método finalizar a postagem
     public function atualizar($id)
     {

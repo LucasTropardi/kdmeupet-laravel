@@ -29,7 +29,10 @@
         <script src="https://kit.fontawesome.com/352682b758.js" crossorigin="anonymous"></script>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite([
+            'resources/css/app.css',
+            'resources/js/app.js',
+            ])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

@@ -110,6 +110,14 @@ Route::middleware(['auth', 'verified',])->group(function () {
     Route::post('salvar-mensagem', [AnimalController::class, 'salvar_mensagem'])
         ->name('salvar.mensagem');
 
+    // atualizar mensagem
+    Route::put('atualizar-mensagem/{id}', [AnimalController::class, 'atualizar_mensagem'])
+        ->name('atualizar.mensagem');
+
+    // apagar mensagem
+    Route::delete('apagar-mensagem/{mensagem}', [AnimalController::class, 'apagar_mensagem'])
+        ->name('apagar.mensagem');
+
     // Achados
     Route::get('logado-achados', [AuthenticatedRoutesController::class, 'achados'])
         ->name('logado.achados');

@@ -92,12 +92,53 @@
                                     {{ Session::get('success') }}
                                 </div>
                             @endif
-                            <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
+                            <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4 p-2">
                                 <p class="mb-4 text-xl text-center">Mensagens</p>
                                 @foreach ($mensagens as $mensagem)
-                                    <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4">
+                                    <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg mt-4 p-2">
                                         <p class="mt-2"><strong>{{ $mensagem->user->name . ' ' . $mensagem->user->lastName }}</strong> em {{ Carbon\Carbon::parse($mensagem->dataMensagem)->format('d/m/Y \à\s H:i') }}</p>
-                                        <p class="mt-4">{{ $mensagem->conteudoMensagem }}</p>
+                                        <p class="mt-4 mb-4">{{ $mensagem->conteudoMensagem }}</p>
+                                        @if ($animal->user_id === Auth::user()->id || Auth::user()->level === 'admin' || Auth::user()->id === $mensagem->user_id)
+                                            <div class="text-right p-2">
+                                                @if ($mensagem->user_id === Auth::user()->id || Auth::user()->level === 'admin')
+                                                    <button class="fa-regular fa-pen-to-square" onclick="mostrarEdicao(this, {{ $mensagem->id }})"></button>
+                                                @endif
+                                                <button class="fa-regular fa-trash-can" onclick="mostrarDelete(this, {{ $mensagem->id }})"></span>
+                                            </div>
+                                            <div class="p-2 hidden" id="edicao-{{ $mensagem->id }}">
+                                                <form action="{{ route('atualizar.mensagem', $mensagem) }}" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div>
+                                                        {{-- Mensagem --}}
+                                                        <x-input-label for="conteudoMensagem" :value="__('Escreva uma mensagem')" />
+                                                        <x-textarea-input class="w-full block mt-1" rows="4" id="conteudoMensagem" type="text" name="conteudoMensagem" :value="old('conteudoMensagem')" autocomplete="conteudoMensagem">{{ $mensagem->conteudoMensagem }}</x-textarea-input>
+                                                    </div>
+                                                    <div class="flex items-center justify-end mt-2">
+                                                        <x-primary-button type="submit" class="butao hover:bg-blue-900" >
+                                                            {{ __('Enviar') }}
+                                                        </x-primary-button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="p-2 hidden" id="delete-{{ $mensagem->id }}">
+                                                <form action="{{ route('apagar.mensagem', $mensagem) }}" method="post">
+                                                    @csrf
+                                                    @method('Delete')
+                                                    <div>
+                                                        {{-- Mensagem --}}
+                                                        <p class="p-2 mb-2">Tem certeza que deseja excluir esta mensagem?</p>                                                    </div>
+                                                    <div class="flex items-center justify-end mt-2">
+                                                        <button type="button" class="bg-green-500 hover:bg-green-700 text-white rounded py-1 px-2 mr-2" onclick="cancelarDelete({{ $mensagem->id }})">
+                                                            {{ __('Cancelar') }}
+                                                        </button>
+                                                        <x-primary-button type="submit" class="bg-red-500 hover:bg-red-700 " >
+                                                            {{ __('Excluir') }}
+                                                        </x-primary-button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        @endif
                                     </div>
                                 @endforeach
                                 @if ($countMsg > 5)
@@ -150,5 +191,6 @@
         </div>
     </div>
     @include('partials.js.js-mapa-show-animal')
+    @include('partials.js.js-show-animal-msg')
 </x-app-layout>
 
