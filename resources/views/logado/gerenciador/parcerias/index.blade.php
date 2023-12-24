@@ -25,6 +25,7 @@
                         <tr>
                             <th class="text-center">Situação</th>
                             <th class="p-2">Nome</th>
+                            <th>Usuário</th>
                             <th>E-mail</th>
                             <th>Telefone</th>
                             <th>Aprovação</th>
@@ -43,6 +44,7 @@
                                     @endif
                                 </td>
                                 <td class="p-2">{{ $parceria->parNome }}</td>
+                                <td>{{ $parceria->user->name . ' ' . $parceria->user->lastName }}</td>
                                 <td>{{ $parceria->parEmail }}</td>
                                 <td>{{ $parceria->parTelefone }}</td>
                                 <td>
@@ -54,12 +56,14 @@
                                 </td>
                                 <td class="text-center space-x-2">
                                     <a href="{{ route('parceria.ver', $parceria) }}"><i class="fa-solid fa-magnifying-glass" title="Visualizar"></i></a>
-                                    @if ($parceria->parFinalizado == '0' || Auth::user()->level === 'admin')
-                                        <a href="{{ route('parceria.editar', $parceria) }}"><span class="fa-regular fa-pen-to-square" title="Editar"></span></a>
+                                    <a href="{{ route('parceria.editar', $parceria) }}"><span class="fa-regular fa-pen-to-square" title="Editar"></span></a>
+                                    @if ($parceria->parAprovado == '0' && $parceria->parFinalizado == '0')
+                                        <a href="#" class="aprovar-parceria" data-parceria-id="{{ $parceria->id }}"><i class="fa-regular fa-thumbs-up text-blue-700" title="Aprovar"></i></a>
                                     @endif
                                     @if ($parceria->parFinalizado == '0')
                                         <a href="#" class="finalizar-parceria" data-parceria-id="{{ $parceria->id }}"><span class="fa-solid fa-xmark text-red-500" title="Finalizar"></span></a>
                                     @endif
+                                    <a href="#" class="excluir-parceria" data-parceria-id="{{ $parceria->id }}"><span class="fa-regular fa-trash-can text-gray-900" title="Excluir"></span></a>
                                 </td>
                             </tr>
                         @endforeach

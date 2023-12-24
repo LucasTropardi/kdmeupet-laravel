@@ -14,7 +14,7 @@
                         <div class="w-full sm:max-w-md mt-2 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mb-12" id="form-cadastrar">
                             <div>
                                 <p class="mb-8 text-xl">Atualize os dados da entidade/parceiro abaixo, <strong>{{ Auth::user()->name }}</strong>, levando em conta que isso exigirá uma nova aprovação para a parceria.</p>
-                                <form action="{{ route('parceria.update') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('parceria.atualizar', $parceria) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <!-- User -->
@@ -23,7 +23,7 @@
                                     <!-- Data -->
                                     <div class="mb-4">
                                         <x-input-label for="parDataCadastro" :value="__('Data*')" />
-                                        <x-text-input id="parDataCadastro" class="block mt-1 w-full" type="text" name="parDataCadastro" :value="$hoje ?? ''" autocomplete="parDataCadastro" required/>
+                                        <x-text-input id="parDataCadastro" class="block mt-1 w-full" type="text" name="parDataCadastro" :value="$dataCadastrada ?? ''" autocomplete="parDataCadastro" required/>
                                         <x-input-error :messages="$errors->get('parDataCadastro')" class="mt-2" />
                                     </div>
 
@@ -64,12 +64,12 @@
                                     <!-- Mensagem-->
                                     <div class="mb-4">
                                         <x-input-label for="parMensagem" :value="__('Mensagem para o administrador do site')" />
-                                        <x-textarea-input class="w-full block mt-1" rows="4" id="parMensagem" type="text" name="parMensagem" :value="old('parMensagem')" autocomplete="parMensagem">{{ $parceiro->parMensagem }}</x-textarea-input>
+                                        <x-textarea-input class="w-full block mt-1" rows="4" id="parMensagem" type="text" name="parMensagem" :value="old('parMensagem')" autocomplete="parMensagem">{{ $parceria->parMensagem }}</x-textarea-input>
                                     </div>
 
                                     <!-- Imagem -->
                                     <div class="mb-4">
-                                        <x-upload-imagem id="parImagem" inputName="parImagem" class="block mt-1 w-full" name="parImagem" required />
+                                        <x-upload-imagem id="parImagem" inputName="parImagem" class="block mt-1 w-full" name="parImagem"/>
                                     </div>
 
                                    <!-- Data Inicio -->

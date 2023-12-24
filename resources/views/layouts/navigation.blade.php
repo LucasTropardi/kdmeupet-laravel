@@ -101,6 +101,15 @@
                         </x-nav-link>
                     </div>
                 @endcan
+
+                <!-- Parcerias gerenciador -->
+                @can('level')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('parceria.gerenciador')" :active="request()->routeIs('parceria.gerenciador')">
+                            <i class="fa-regular fa-handshake" title="Parcerias"></i>
+                        </x-nav-link>
+                    </div>
+                @endcan
             </div>
 
             <!-- Settings Dropdown -->

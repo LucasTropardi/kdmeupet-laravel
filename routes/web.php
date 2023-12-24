@@ -95,6 +95,13 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
     Route::put('reativar-publicacao/{id}', [AnimalGerenciadorController::class, 'atualizar'])
         ->name('reativar.publicacao');
 
+    // Parcerias Gerenciador
+    Route::get('parceria-gerenciador', [ParceriaController::class, 'gerenciador_index'])
+        ->name('parceria.gerenciador');
+    Route::put('aprovar-parceria/{id}', [ParceriaController::class, 'aprovar_parceria'])
+        ->name('aprovar.parceria');
+    Route::delete('excluir-parceria/{id}', [ParceriaController::class, 'destroy'])
+        ->name('excluir.parceria');
 });
 
 // Rotas de usuários
@@ -129,6 +136,14 @@ Route::middleware(['auth', 'verified',])->group(function () {
 
     // Rotas para parcerias
     Route::resources(['parceria' => ParceriaController::class,]);
+    Route::get('parceria-ver/{parceria}', [ParceriaController::class, 'show'])
+        ->name('parceria.ver');
+    Route::get('parceria-editar/{parceria}', [ParceriaController::class, 'edit'])
+        ->name('parceria.editar');
+    Route::put('parceria-atualizar/{parceria}', [ParceriaController::class, 'update'])
+        ->name('parceria.atualizar');
+    Route::put('finalizar-parceria/{id}', [ParceriaController::class, 'finalizar_parceria'])
+        ->name('finalizar.parceria');
 });
 
 // Rotas auxiliares para cadastro animal
