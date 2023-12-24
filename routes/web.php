@@ -5,6 +5,7 @@ use App\Http\Controllers\AnimalGerenciadorController;
 use App\Http\Controllers\AuthenticatedRoutesController;
 use App\Http\Controllers\CorController;
 use App\Http\Controllers\EspecieController;
+use App\Http\Controllers\ParceriaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicRoutesController;
 use App\Http\Controllers\RacaController;
@@ -125,6 +126,9 @@ Route::middleware(['auth', 'verified',])->group(function () {
     // Perdidos
     Route::get('logado-perdidos', [AuthenticatedRoutesController::class, 'perdidos'])
         ->name('logado.perdidos');
+
+    // Rotas para parcerias
+    Route::resources(['parceria' => ParceriaController::class,]);
 });
 
 // Rotas auxiliares para cadastro animal

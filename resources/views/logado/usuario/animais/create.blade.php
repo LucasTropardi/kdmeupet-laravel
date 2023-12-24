@@ -73,7 +73,7 @@
                                     </div>
 
                                     <!-- Foto -->
-                                    <x-upload-imagem id="anFoto" class="block mt-1 w-full" name="anFoto" required />
+                                    <x-upload-imagem id="anFoto" inputName="anFoto" class="block mt-1 w-full" required />
 
                                     <!-- Endereco -->
 

@@ -56,7 +56,7 @@
                                         </tr>
                                         <tr class="hover:bg-gray-100">
                                             <td>Publicação</td>
-                                            @if ($animal->anFinalizado === 1)
+                                            @if ($animal->anFinalizado == 1)
                                                 <td>Finalizada</td>
                                             @else
                                                 <td>Ativa</td>
@@ -101,9 +101,9 @@
                                         @if ($animal->user_id === Auth::user()->id || Auth::user()->level === 'admin' || Auth::user()->id === $mensagem->user_id)
                                             <div class="text-right p-2">
                                                 @if ($mensagem->user_id === Auth::user()->id || Auth::user()->level === 'admin')
-                                                    <button class="fa-regular fa-pen-to-square" onclick="mostrarEdicao(this, {{ $mensagem->id }})"></button>
+                                                    <button class="fa-regular fa-pen-to-square" title="Editar" onclick="mostrarEdicao(this, {{ $mensagem->id }})"></button>
                                                 @endif
-                                                <button class="fa-regular fa-trash-can" onclick="mostrarDelete(this, {{ $mensagem->id }})"></span>
+                                                <button class="fa-regular fa-trash-can" title="Excluir" onclick="mostrarDelete(this, {{ $mensagem->id }})"></span>
                                             </div>
                                             <div class="p-2 hidden" id="edicao-{{ $mensagem->id }}">
                                                 <form action="{{ route('atualizar.mensagem', $mensagem) }}" method="post">

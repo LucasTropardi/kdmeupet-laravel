@@ -13,13 +13,6 @@
                 <!-- Navigation Links -->
                 <!-- Dashboard do usuário -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-
-                <!-- Dashboard do usuário -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('animal.index')" :active="request()->routeIs('animal.index')">
                         {{ __('Animais') }}
                     </x-nav-link>
@@ -36,6 +29,13 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('logado.perdidos')" :active="request()->routeIs('logado.perdidos')">
                         {{ __('Perdidos') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- Parcerias -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('parceria.index')" :active="request()->routeIs('parceria.index')">
+                        {{ __('Parceria') }}
                     </x-nav-link>
                 </div>
 

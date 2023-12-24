@@ -25,16 +25,23 @@ var navbar = document.querySelector('.fixed-nav');
         }
     });
 
-// Máscara para data
+// Máscaras e datepicker
 $(document).ready(function() {
-    // Máscara para a data (formato: dd/mm/aaaa)
     $('#anData').inputmask('99/99/9999');
 
-    // Inicialização do Datepicker
     $('#anData').datepicker({
         format: 'dd/mm/yyyy',
         autoHide: true,
     });
+
+    $('#parDataCadastro').inputmask('99/99/9999');
+
+    $('#parDataCadastro').datepicker({
+        format: 'dd/mm/yyyy',
+        autoHide: true,
+    });
+
+    $('#parTelefone').inputmask('(99) 999999999');
 });
 
 // Selecionar raças e tamanhos para cadastro animal
