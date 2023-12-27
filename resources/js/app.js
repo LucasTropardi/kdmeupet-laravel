@@ -41,6 +41,13 @@ $(document).ready(function() {
         autoHide: true,
     });
 
+    $('#adDataCadastro').inputmask('99/99/9999');
+
+    $('#adDataCadastro').datepicker({
+        format: 'dd/mm/yyyy',
+        autoHide: true,
+    });
+
     $('#parTelefone').inputmask('(99) 999999999');
 });
 

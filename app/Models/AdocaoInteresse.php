@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cor extends Model
+class AdocaoInteresse extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id', // int
-        'cor', // string
+    protected $filleble = [
+        'adocao_id',
+        'user_id',
+        'adiDataCadastro',
+        'adiContato',
+        'adiMensagem',
+        'adiFinalizado',
     ];
-
-    public function animais()
-    {
-        return $this->hasMany(Animal::class, 'cor_id', 'id');
-    }
 
     public function user()
     {
@@ -26,6 +25,6 @@ class Cor extends Model
 
     public function adocao()
     {
-        return $this->hasMany(Adocao::class, 'cor_id', 'id');
+        return $this->belongsTo(Adocao::class, 'adocao_id', 'id');
     }
 }

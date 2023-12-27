@@ -82,4 +82,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Parceria::class, 'user_id', 'id');
     }
+
+    public function adocao(): HasMany
+    {
+        return $this->hasMany(Adocao::class, 'user_id', 'id');
+    }
+
+    public function adocao_interesse(): HasMany
+    {
+        return $this->hasMany(AdocaoInteresse::class, 'user_id', 'id');
+    }
+
+    public function adocao_mensagem(): HasMany
+    {
+        return $this->hasMany(AdocaoMensagem::class, 'user_id', 'id');
+    }
 }

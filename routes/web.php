@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdocaoController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AnimalGerenciadorController;
 use App\Http\Controllers\AuthenticatedRoutesController;
@@ -49,45 +50,35 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
     Route::get('user-edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('user-update/{id}', [UserController::class, 'update'])->name('user.update');
 
-    // Rotas para Cores
+    // Resources
     Route::resources([
-        'cor' => CorController::class,
+        'cor'                => CorController::class,
+        'raca'               => RacaController::class,
+        'especie'            => EspecieController::class,
+        'tamanho'            => TamanhoController::class,
+        'situacao'           => SituacaoController::class,
+        'animal-gerenciador' => AnimalGerenciadorController::class,
     ]);
     Route::get('confirma-delete-cor/{id}', [CorController::class, 'confirma_delete_cor'])
         ->name('confirma.delete.cor');
 
     // Rotas para espécies
-    Route::resources([
-        'especie' => EspecieController::class,
-    ]);
     Route::get('confirma-delete-especie/{id}', [EspecieController::class, 'confirma_delete_especie'])
         ->name('confirma.delete.especie');
 
     // Rotas para raças
-    Route::resources([
-        'raca' => RacaController::class,
-    ]);
     Route::get('confirma-dedlete-raca/{id}', [RacaController::class, 'confirma_delete_raca'])
         ->name('confirma.delete.raca');
 
     // Rotas para tamanhos
-    Route::resources([
-        'tamanho' => TamanhoController::class,
-    ]);
     Route::get('confirma-delete-tamanho/{id}', [TamanhoController::class, 'confirma_delete_tamanho'])
         ->name('confirma.delete.tamanho');
 
     // Rotas para situações
-    Route::resources([
-        'situacao' => SituacaoController::class,
-    ]);
     Route::get('confirma-delete-situacao/{id}', [SituacaoController::class, 'confirma_delete_situacao'])
         ->name('confirma.delete.situacao');
 
     // Rotas para animais gerenciador
-    Route::resources([
-        'animal-gerenciador' => AnimalGerenciadorController::class,
-    ]);
     Route::get('confirma-delete-animal/{id}', [AnimalGerenciadorController::class, 'confirma_delete_animal'])
         ->name('confirma.delete.animal');
     Route::delete('animal-gerenciador.destroy/{animal}', [AnimalGerenciadorController::class, 'destroy'])
@@ -102,6 +93,12 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
         ->name('aprovar.parceria');
     Route::delete('excluir-parceria/{id}', [ParceriaController::class, 'destroy'])
         ->name('excluir.parceria');
+
+    // Adoção Gerenciador
+    Route::get('adocao-gerenciador', [AdocaoController::class, 'index_gerenciador'])
+        ->name('adocao.gerenciador');
+    Route::delete('excluir-adocao/{id}', [AdocaoController::class, 'destroy'])
+        ->name('excluir.adocao');
 });
 
 // Rotas de usuários
@@ -109,9 +106,11 @@ Route::middleware(['auth', 'verified',])->group(function () {
     Route::get('dashboard', [AuthenticatedRoutesController::class, 'dashboard'])
         ->name('dashboard');
 
-    // Rotas para animais
+    // Resources
     Route::resources([
-        'animal' => AnimalController::class,
+        'animal'   => AnimalController::class,
+        'parceria' => ParceriaController::class,
+        'adocao'   => AdocaoController::class,
     ]);
 
     // salvar mensagem
@@ -135,7 +134,6 @@ Route::middleware(['auth', 'verified',])->group(function () {
         ->name('logado.perdidos');
 
     // Rotas para parcerias
-    Route::resources(['parceria' => ParceriaController::class,]);
     Route::get('parceria-ver/{parceria}', [ParceriaController::class, 'show'])
         ->name('parceria.ver');
     Route::get('parceria-editar/{parceria}', [ParceriaController::class, 'edit'])
@@ -144,6 +142,18 @@ Route::middleware(['auth', 'verified',])->group(function () {
         ->name('parceria.atualizar');
     Route::put('finalizar-parceria/{id}', [ParceriaController::class, 'finalizar_parceria'])
         ->name('finalizar.parceria');
+
+    // Rotas para adoções
+    Route::get('finalizar-adocao/{adocao}', [AdocaoController::class, 'finalizar_adocao'])
+        ->name('adocao.finalizar');
+    Route::put('adocao-stop/{adocao}', [AdocaoController::class, 'finalizar'])
+        ->name('adocao.stop');
+    Route::post('salvar-mensagem-adocao', [AdocaoController::class, 'salvar_mensagem'])
+        ->name('salvar.mensagem.adocao');
+    Route::put('atualizar-mensagem-adocao/{id}', [AdocaoController::class, 'atualizar_mensagem'])
+        ->name('atualizar.mensagem.adocao');
+    Route::delete('apagar-mensagem-adocao/{mensagem}', [AdocaoController::class, 'apagar_mensagem'])
+        ->name('apagar.mensagem.adocao');
 });
 
 // Rotas auxiliares para cadastro animal

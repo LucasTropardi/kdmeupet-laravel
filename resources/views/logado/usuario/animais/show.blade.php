@@ -158,9 +158,7 @@
 
                                     {{-- Mensagem --}}
                                     <x-input-label for="conteudoMensagem" :value="__('Escreva uma mensagem')" />
-                                    <x-textarea-input class="w-full block mt-1" rows="4" id="conteudoMensagem" type="text" name="conteudoMensagem" :value="old('conteudoMensagem')" autocomplete="conteudoMensagem">
-                                        {{-- Conteúdo padrão (se necessário) --}}
-                                    </x-textarea-input>
+                                    <x-textarea-input class="w-full block mt-1" rows="4" id="conteudoMensagem" type="text" name="conteudoMensagem" :value="old('conteudoMensagem')" autocomplete="conteudoMensagem"></x-textarea-input>
                                 </div>
                                 <div class="flex items-center justify-end mt-2">
                                     <x-primary-button type="submit" class="butao hover:bg-blue-900" >

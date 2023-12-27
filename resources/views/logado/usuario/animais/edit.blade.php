@@ -79,7 +79,7 @@
                                     </div>
 
                                     <!--Enviar nova foto -->
-                                    <x-upload-imagem id="anFoto" class="block mt-1 w-full" name="anFoto" />
+                                    <x-upload-imagem id="anFoto" inputName="anFoto" class="block mt-1 w-full" />
 
 
 

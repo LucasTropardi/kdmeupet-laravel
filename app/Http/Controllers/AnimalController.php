@@ -162,7 +162,6 @@ class AnimalController extends Controller
             'anNome'       => 'required|string|max:255',
             'anDescricao'  => 'required|string|max:400',
             'anContato'    => 'required|string|max:200',
-            'anData'       => 'required',
         ]);
 
         $camposAtualizar = [

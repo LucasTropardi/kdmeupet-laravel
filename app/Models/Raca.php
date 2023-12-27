@@ -31,4 +31,9 @@ class Raca extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function adocao(): HasMany
+    {
+        return $this->hasMany(Adocao::class, 'raca_id', 'id');
+    }
 }

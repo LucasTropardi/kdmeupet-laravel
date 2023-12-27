@@ -39,84 +39,83 @@
                     </x-nav-link>
                 </div>
 
-                <!-- Users gerenciador -->
-                @can('level')
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('users.index')">
-                            <i class="fa-solid fa-user-gear" title="Usuários"></i>
-                        </x-nav-link>
-                    </div>
-                @endcan
+                <!-- Adoções -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('adocao.index')" :active="request()->routeIs('adocao.index')">
+                        {{ __('Adoções') }}
+                    </x-nav-link>
+                </div>
 
-                <!-- Cores gerenciador -->
                 @can('level')
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('cor.index')" :active="request()->routeIs('cor.index')">
-                            <i class="fa-solid fa-palette" title="Cores"></i>
-                        </x-nav-link>
-                    </div>
-                @endcan
+                    <!-- Settings Dropdown -->
+                    <div class="hidden sm:flex sm:items-center sm:ms-6">
+                        <x-dropdown >
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <div>
+                                        <span class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-700 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                                            Gerenciamento
+                                        </span>
+                                    </div>
 
-                <!-- Espécies gerenciador -->
-                @can('level')
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('especie.index')" :active="request()->routeIs('especie.index')">
-                            <i class="fa-solid fa-otter" title="Espécies"></i>
-                        </x-nav-link>
-                    </div>
-                @endcan
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4 pt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
 
-                <!-- Raças gerenciador -->
-                @can('level')
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('raca.index')" :active="request()->routeIs('raca.index')">
-                            <i class="fa-solid fa-paw" title="Raças"></i>
-                        </x-nav-link>
-                    </div>
-                @endcan
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('user.index')" :active="request()->routeIs('users.index')">
+                                    <i class="fa-solid fa-user-gear mr-2"></i> Usuários
+                                </x-dropdown-link>
 
-                <!-- Tamanhos gerenciador -->
-                @can('level')
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('tamanho.index')" :active="request()->routeIs('tamanho.index')">
-                            <i class="fa-solid fa-up-right-and-down-left-from-center" title="Tamanhos"></i>
-                        </x-nav-link>
-                    </div>
-                @endcan
+                                <x-dropdown-link :href="route('cor.index')" :active="request()->routeIs('cor.index')">
+                                    <i class="fa-solid fa-palette mr-2"></i> Cores
+                                </x-dropdown-link>
 
-                <!-- Situações gerenciador -->
-                @can('level')
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('situacao.index')" :active="request()->routeIs('situacao.index')">
-                            <i class="fa-regular fa-circle-question" title="Situações"></i>
-                        </x-nav-link>
-                    </div>
-                @endcan
+                                <x-dropdown-link :href="route('especie.index')" :active="request()->routeIs('especie.index')">
+                                    <i class="fa-solid fa-otter mr-2"></i> Especies
+                                </x-dropdown-link>
 
-                <!-- Animais gerenciador -->
-                @can('level')
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('animal-gerenciador.index')" :active="request()->routeIs('animal-gerenciador.index')">
-                            <i class="fa-solid fa-dog" title="Animais"></i>
-                        </x-nav-link>
-                    </div>
-                @endcan
+                                <x-dropdown-link :href="route('raca.index')" :active="request()->routeIs('raca.index')">
+                                    <i class="fa-solid fa-paw mr-2"></i> Raças
+                                </x-dropdown-link>
 
-                <!-- Parcerias gerenciador -->
-                @can('level')
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('parceria.gerenciador')" :active="request()->routeIs('parceria.gerenciador')">
-                            <i class="fa-regular fa-handshake" title="Parcerias"></i>
-                        </x-nav-link>
+                                <x-dropdown-link :href="route('tamanho.index')" :active="request()->routeIs('tamanho.index')">
+                                    <i class="fa-solid fa-up-right-and-down-left-from-center mr-2"></i> Tamanhos
+                                </x-dropdown-link>
+
+                                <x-dropdown-link :href="route('situacao.index')" :active="request()->routeIs('situacao.index')">
+                                    <i class="fa-regular fa-circle-question mr-2"></i> Situações
+                                </x-dropdown-link>
+
+                                <x-dropdown-link :href="route('animal-gerenciador.index')" :active="request()->routeIs('animal-gerenciador.index')">
+                                    <i class="fafa-solid fa-dog mr-2"></i> Animais
+                                </x-dropdown-link>
+
+                                <x-dropdown-link :href="route('parceria.gerenciador')" :active="request()->routeIs('parceria.gerenciador')">
+                                    <i class="fa-regular fa-handshake mr-2"></i> Parcerias
+                                </x-dropdown-link>
+
+                                <x-dropdown-link :href="route('adocao.gerenciador')" :active="request()->routeIs('adocao.gerenciador')">
+                                    <i class="fa-regular fa-star mr-2"></i> Adoções
+                                </x-dropdown-link>
+
+                            </x-slot>
+                        </x-dropdown>
                     </div>
                 @endcan
             </div>
+
+
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-gray-100 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">

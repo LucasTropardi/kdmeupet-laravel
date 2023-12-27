@@ -49,13 +49,3 @@
     height: 100%;
     object-fit: cover;
 }
-
-.fixed-image {
-    width: 340px;
-    height: 200px;
-}
-
-.fixed-show-div {
-    width: 395px;
-    height: 350px;
-}

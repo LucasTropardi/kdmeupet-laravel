@@ -33,4 +33,9 @@ class Especie extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function adocao()
+    {
+        return $this->hasMany(Adocao::class, 'especie_id', 'id');
+    }
 }
