@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdocaoController;
+use App\Http\Controllers\AdocaoInteresseController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AnimalGerenciadorController;
 use App\Http\Controllers\AuthenticatedRoutesController;
@@ -154,6 +155,24 @@ Route::middleware(['auth', 'verified',])->group(function () {
         ->name('atualizar.mensagem.adocao');
     Route::delete('apagar-mensagem-adocao/{mensagem}', [AdocaoController::class, 'apagar_mensagem'])
         ->name('apagar.mensagem.adocao');
+    Route::get('adocao-interesse-create/{id}', [AdocaoInteresseController::class, 'create'])
+        ->name('adocao.interesse.create');
+    Route::post('adocao.interesse.store', [AdocaoInteresseController::class, 'store'])
+        ->name('adocao.interesse.store');
+    Route::get('lista-adocoes', [AdocaoController::class, 'lista_adocoes'])
+        ->name('lista.adocoes');
+    Route::get('adocao-interesse-index/{id}', [AdocaoInteresseController::class, 'index'])
+        ->name('adocao.interesse.index');
+    Route::get('adocao-interesse-show/{interesse}', [AdocaoInteresseController::class, 'show'])
+        ->name('adocao.interesse.show');
+    Route::get('adocao-interesse-edit/{interesse}', [AdocaoInteresseController::class, 'edit'])
+        ->name('adocao.interesse.edit');
+    Route::put('adocao-interesse-update/{interesse}', [AdocaoInteresseController::class, 'update'])
+        ->name('adocao.interesse.update');
+    Route::get('adocao-interesse-finalizar/{interesse}', [AdocaoInteresseController::class, 'finalizar_interesse'])
+        ->name('adocao.interesse.finalizar');
+    Route::put('adocao-interesse-finalizar-confirm/{interesse}', [AdocaoInteresseController::class, 'finalizar'])
+        ->name('interesse.finalizar');
 });
 
 // Rotas auxiliares para cadastro animal

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('adiContato');
             $table->string('adiMensagem');
             $table->integer('adiFinalizado')->default(0);
+            $table->string('adiResposta');
+            $table->string('adiDataResposta');
             $table->timestamps();
         });
     }

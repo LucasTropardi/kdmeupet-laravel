@@ -179,6 +179,13 @@
                                         <a href="{{ route('dashboard') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-1">Voltar</a>
                                     @endif
                                 @endif
+                                @if ($adocao->user_id != Auth::user()->id)
+                                    <a href="{{ route('adocao.interesse.create', $adocao->id) }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-1">Eu quero</a>
+                                @endif
+                                @if ($adocao->user_id == Auth::user()->id || Auth::user()->level === 'admin')
+                                    <a href="{{ route('adocao.interesse.index', $adocao->id) }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-1">Interesses</a>
+                                @endif
+
                                 @if ((Auth::user()->id === $adocao->user_id) || (Auth::user()->level === 'admin'))
                                     <a href="{{ route('adocao.edit', $adocao->id) }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Editar</a>
                                 @endif
@@ -191,8 +198,6 @@
             </div>
         </div>
     </div>
-    {{-- @include('partials.js.js-mapa-show-animal')
-    @include('partials.js.js-show-animal-msg') --}}
     @include('partials.js.js-show-animal-msg')
 </x-app-layout>
 

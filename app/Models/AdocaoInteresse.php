@@ -9,13 +9,15 @@ class AdocaoInteresse extends Model
 {
     use HasFactory;
 
-    protected $filleble = [
+    protected $fillable = [
         'adocao_id',
         'user_id',
         'adiDataCadastro',
         'adiContato',
         'adiMensagem',
         'adiFinalizado',
+        'adiResposta',
+        'adiDataResposta',
     ];
 
     public function user()

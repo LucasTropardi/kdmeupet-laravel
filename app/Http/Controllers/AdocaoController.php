@@ -42,6 +42,16 @@ class AdocaoController extends Controller
         ]);
     }
 
+    public function lista_adocoes()
+    {
+        $adocoes = Adocao::where('adFinalizado', 0)->orderBy('adDataCadastro', 'desc')->paginate(9);
+        $countAnimais = Adocao::count();
+        return view('logado.usuario.adocoes.lista-adocoes', [
+            'adocoes'      => $adocoes,
+            'countAnimais' => $countAnimais,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
