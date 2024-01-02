@@ -93,15 +93,9 @@ class EspecieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Especie $especie)
+    public function destroy($id)
     {
-        Especie::findOrFail($especie->id)->delete();
+        Especie::findOrFail($id)->delete();
         return redirect(route('especie.index'));
-    }
-
-    public function confirma_delete_especie($id)
-    {
-        $especie = Especie::findOrFail($id);
-        return view('logado.gerenciador.especies.confirma_delete_especie', ['id' => $id, 'especie' => $especie]);
     }
 }

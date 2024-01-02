@@ -89,15 +89,9 @@ class CorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cor $cor)
+    public function destroy($id)
     {
-        Cor::findOrFail($cor->id)->delete();
+        Cor::findOrFail($id)->delete();
         return redirect(route('cor.index'));
-    }
-
-    public function confirma_delete_cor($id)
-    {
-        $cor = Cor::findOrFail($id);
-        return view('logado.gerenciador.cores.confirma_delete_cor', ['id' => $id, 'cor' => $cor]);
     }
 }

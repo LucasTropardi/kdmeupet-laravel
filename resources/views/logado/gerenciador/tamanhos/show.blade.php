@@ -30,11 +30,13 @@
                     <div>
                         <a href="{{ route('tamanho.index') }}" class="bg-blue-800 text-white py-2 px-3 rounded hover:bg-blue-900">Tamanhos</a>
                         <a href="{{ route('tamanho.edit', $tamanho->id) }}" class="bg-orange-500 text-white py-2 px-3 rounded hover:bg-orange-700 ml-1">Editar</a>
-                        <a href="{{ route('confirma.delete.tamanho', $tamanho->id) }}" class="bg-red-500 text-white py-2 px-3 rounded hover:bg-red-700 ml-1">Excluir</a>
+                        <a href="#" class="excluir-tamanho bg-red-500 text-white py-2 px-3 rounded hover:bg-red-700 ml-1" data-tamanho-id="{{ $tamanho->id }}">Excluir</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('partials.modals.modal-excluir-tamanho')
+    @include('partials.js.js-modal-excluir-tamanho')
 </x-app-layout>
 

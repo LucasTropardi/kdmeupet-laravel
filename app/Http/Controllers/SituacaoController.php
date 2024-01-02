@@ -91,15 +91,9 @@ class SituacaoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Situacao $situacao)
+    public function destroy($id)
     {
-        Situacao::findOrFail($situacao->id)->delete();
+        Situacao::findOrFail($id)->delete();
         return redirect(route('situacao.index'));
-    }
-
-    public function confirma_delete_situacao($id)
-    {
-        $situacao = Situacao::findOrFail($id);
-        return view('logado.gerenciador.situacoes.confirma_delete_situacao', ['id' => $id, 'situacao' => $situacao]);
     }
 }

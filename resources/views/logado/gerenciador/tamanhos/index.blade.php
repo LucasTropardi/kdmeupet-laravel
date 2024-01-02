@@ -40,8 +40,8 @@
                                         <a href="{{ route('tamanho.edit', $tamanho->id) }}">
                                             <i class="fa-solid fa-pen-to-square ml-1 mr-1" title="Editar"></i>
                                         </a>
-                                        <a href="{{ route('confirma.delete.tamanho', ['id' => $tamanho->id]) }}">
-                                            <i class="fa-regular fa-trash-can" title="Excluir"></i>
+                                        <a href="#" title="Excluir" class="excluir-tamanho" data-tamanho-id="{{ $tamanho->id }}">
+                                            <i class="fa-regular fa-trash-can"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -53,4 +53,6 @@
             </div>
         </div>
     </div>
+    @include('partials.modals.modal-excluir-tamanho')
+    @include('partials.js.js-modal-excluir-tamanho')
 </x-app-layout>

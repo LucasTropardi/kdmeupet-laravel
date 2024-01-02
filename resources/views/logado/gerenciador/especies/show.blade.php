@@ -27,11 +27,13 @@
                     <div>
                         <a href="{{ route('especie.index') }}" class="bg-blue-800 text-white py-2 px-3 rounded hover:bg-blue-900">Espécies</a>
                         <a href="{{ route('especie.edit', $especie->id) }}" class="bg-orange-500 text-white py-2 px-3 rounded hover:bg-orange-700 ml-1">Editar</a>
-                        <a href="{{ route('confirma.delete.especie', $especie->id) }}" class="bg-red-500 text-white py-2 px-3 rounded hover:bg-red-700 ml-1">Excluir</a>
+                        <a href="#" class="excluir-especie bg-red-500 text-white py-2 px-3 rounded hover:bg-red-700 ml-1" data-especie-id="{{ $especie->id }}">Excluir</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('partials.modals.modal-excluir-especie')
+    @include('partials.js.js-modal-excluir-especie')
 </x-app-layout>
 

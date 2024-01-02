@@ -114,15 +114,9 @@ class RacaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Raca $raca)
+    public function destroy($id)
     {
-        Raca::findOrFail($raca->id)->delete();
+        Raca::findOrFail($id)->delete();
         return redirect(route('raca.index'));
-    }
-
-    public function confirma_delete_raca($id)
-    {
-        $raca = Raca::findOrFail($id);
-        return view('logado.gerenciador.racas.confirma_delete_raca', ['id' => $id, 'raca' => $raca]);
     }
 }

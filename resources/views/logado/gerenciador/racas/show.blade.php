@@ -30,11 +30,13 @@
                     <div>
                         <a href="{{ route('raca.index') }}" class="bg-blue-800 text-white py-2 px-3 rounded hover:bg-blue-900">Raças</a>
                         <a href="{{ route('raca.edit', $raca->id) }}" class="bg-orange-500 text-white py-2 px-3 rounded hover:bg-orange-700 ml-1">Editar</a>
-                        <a href="{{ route('confirma.delete.raca', $raca->id) }}" class="bg-red-500 text-white py-2 px-3 rounded hover:bg-red-700 ml-1">Excluir</a>
+                        <a href="#" title="Excluir" class="excluir-raca bg-red-500 text-white py-2 px-3 rounded hover:bg-red-700 ml-1" data-raca-id="{{ $raca->id }}">Excluir</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('partials.modals.modal-excluir-raca')
+    @include('partials.js.js-modal-excluir-raca')
 </x-app-layout>
 

@@ -40,7 +40,7 @@
                                         <a href="{{ route('raca.edit', $raca->id) }}">
                                             <i class="fa-solid fa-pen-to-square ml-1 mr-1" title="Editar"></i>
                                         </a>
-                                        <a href="{{ route('confirma.delete.raca', ['id' => $raca->id]) }}">
+                                        <a href="#" title="Excluir" class="excluir-raca" data-raca-id="{{ $raca->id }}">
                                             <i class="fa-regular fa-trash-can" title="Excluir"></i>
                                         </a>
                                     </td>
@@ -53,4 +53,6 @@
             </div>
         </div>
     </div>
+    @include('partials.modals.modal-excluir-raca')
+    @include('partials.js.js-modal-excluir-raca')
 </x-app-layout>

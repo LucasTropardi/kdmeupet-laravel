@@ -24,11 +24,13 @@
                     <div>
                         <a href="{{ route('cor.index') }}" class="bg-blue-800 text-white py-2 px-3 rounded hover:bg-blue-900">Cores</a>
                         <a href="{{ route('cor.edit', $cor->id) }}" class="bg-orange-500 text-white py-2 px-3 rounded hover:bg-orange-700 ml-1">Editar</a>
-                        <a href="{{ route('cor.edit', $cor->id) }}" class="bg-red-500 text-white py-2 px-3 rounded hover:bg-red-700 ml-1">Excluir</a>
+                        <a href="#" class="excluir-cor bg-red-500 text-white py-2 px-3 rounded hover:bg-red-700 ml-1" data-cor-id="{{ $cor->id }}">Excluir</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('partials.modals.modal-excluir-cor')
+    @include('partials.js.js-modal-excluir-cor')
 </x-app-layout>
 

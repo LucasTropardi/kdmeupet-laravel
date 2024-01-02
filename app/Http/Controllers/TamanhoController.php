@@ -113,15 +113,9 @@ class TamanhoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tamanho $tamanho)
+    public function destroy($id)
     {
-        Tamanho::findOrFail($tamanho->id)->delete();
+        Tamanho::findOrFail($id)->delete();
         return redirect(route('tamanho.index'));
-    }
-
-    public function confirma_delete_tamanho($id)
-    {
-        $tamanho = Tamanho::findOrFail($id);
-        return view('logado.gerenciador.tamanhos.confirma_delete_tamanho', ['id' => $id, 'tamanho' => $tamanho]);
     }
 }

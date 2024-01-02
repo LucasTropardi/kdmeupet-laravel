@@ -60,24 +60,24 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
         'situacao'           => SituacaoController::class,
         'animal-gerenciador' => AnimalGerenciadorController::class,
     ]);
-    Route::get('confirma-delete-cor/{id}', [CorController::class, 'confirma_delete_cor'])
-        ->name('confirma.delete.cor');
+    Route::delete('cor-destroy/{id}', [CorController::class, 'destroy'])
+        ->name('cor.destroy');
 
     // Rotas para espécies
-    Route::get('confirma-delete-especie/{id}', [EspecieController::class, 'confirma_delete_especie'])
-        ->name('confirma.delete.especie');
+    Route::delete('especie-destroy/{id}', [EspecieController::class, 'destroy'])
+        ->name('especie.destroy');
 
     // Rotas para raças
-    Route::get('confirma-dedlete-raca/{id}', [RacaController::class, 'confirma_delete_raca'])
-        ->name('confirma.delete.raca');
+    Route::delete('raca-destroy/{id}', [RacaController::class, 'destroy'])
+        ->name('raca.destroy');
 
     // Rotas para tamanhos
-    Route::get('confirma-delete-tamanho/{id}', [TamanhoController::class, 'confirma_delete_tamanho'])
-        ->name('confirma.delete.tamanho');
+    Route::delete('tamanho-destroy/{id}', [TamanhoController::class, 'destroy'])
+        ->name('tamanho.destroy');
 
     // Rotas para situações
-    Route::get('confirma-delete-situacao/{id}', [SituacaoController::class, 'confirma_delete_situacao'])
-        ->name('confirma.delete.situacao');
+    Route::delete('situacao-destroy/{id}', [SituacaoController::class, 'destroy'])
+        ->name('situacao.destroy');
 
     // Rotas para animais gerenciador
     Route::get('confirma-delete-animal/{id}', [AnimalGerenciadorController::class, 'confirma_delete_animal'])

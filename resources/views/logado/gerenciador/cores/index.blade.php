@@ -1,9 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Lista de Cores') }}
-        </h2>
-    </x-slot>
+    <div><br></div>
     @section('title','Cores')
     @include('partials.bannertop')
     <div class="py-12">
@@ -38,7 +34,7 @@
                                         <a href="{{ route('cor.edit', $cor->id) }}">
                                             <i class="fa-solid fa-pen-to-square ml-1 mr-1" title="Editar"></i>
                                         </a>
-                                        <a href="{{ route('confirma.delete.cor', ['id' => $cor->id]) }}">
+                                        <a href="#" title="Excluir cor" class="excluir-cor" data-cor-id="{{ $cor->id }}">
                                             <i class="fa-regular fa-trash-can" title="Excluir"></i>
                                         </a>
                                     </td>
@@ -47,8 +43,9 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
+    @include('partials.modals.modal-excluir-cor')
+    @include('partials.js.js-modal-excluir-cor')
 </x-app-layout>

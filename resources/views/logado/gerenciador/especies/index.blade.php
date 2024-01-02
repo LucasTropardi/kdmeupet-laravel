@@ -38,8 +38,8 @@
                                         <a href="{{ route('especie.edit', $especie->id) }}">
                                             <i class="fa-solid fa-pen-to-square ml-1 mr-1" title="Editar"></i>
                                         </a>
-                                        <a href="{{ route('confirma.delete.especie', ['id' => $especie->id]) }}">
-                                            <i class="fa-regular fa-trash-can" title="Excluir"></i>
+                                        <a href="#" title="Excluir" class="excluir-especie" data-especie-id="{{ $especie->id }}">
+                                            <i class="fa-regular fa-trash-can"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -51,4 +51,6 @@
             </div>
         </div>
     </div>
+    @include('partials.modals.modal-excluir-especie')
+    @include('partials.js.js-modal-excluir-especie')
 </x-app-layout>

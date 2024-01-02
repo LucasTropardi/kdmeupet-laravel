@@ -60,15 +60,15 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('adocao.index')" :active="request()->routeIs('adocao.gerenciador')">
-                                <i class="fa-regular fa-star mr-2"></i> Meus cadastros
+                                Meus cadastros
                             </x-dropdown-link>
 
                             <x-dropdown-link :href="route('meus.interesses')" :active="request()->routeIs('meus.interesses')">
-                                <i class="fa-regular fa-star mr-2"></i> Meus interesses
+                                Meus interesses
                             </x-dropdown-link>
 
                             <x-dropdown-link :href="route('lista.adocoes')" :active="request()->routeIs('adocao.gerenciador')">
-                                <i class="fa-regular fa-star mr-2"></i> Animais disponíveis
+                                Animais disponíveis
                             </x-dropdown-link>
 
                         </x-slot>
