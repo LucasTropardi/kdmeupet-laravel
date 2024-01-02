@@ -100,6 +100,10 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
         ->name('adocao.gerenciador');
     Route::delete('excluir-adocao/{id}', [AdocaoController::class, 'destroy'])
         ->name('excluir.adocao');
+    Route::get('adocao-gerenciador-interesse', [AdocaoInteresseController::class, 'index_gerenciador'])
+        ->name('adocao.gerenciador.interesse');
+    Route::delete('adocao-interesse-delete/{interesse}', [AdocaoInteresseController::class, 'destroy'])
+        ->name('adocao.interesse.delete');
 });
 
 // Rotas de usuários
@@ -173,6 +177,8 @@ Route::middleware(['auth', 'verified',])->group(function () {
         ->name('adocao.interesse.finalizar');
     Route::put('adocao-interesse-finalizar-confirm/{interesse}', [AdocaoInteresseController::class, 'finalizar'])
         ->name('interesse.finalizar');
+    Route::get('meus-interesses', [AdocaoInteresseController::class, 'meus_interesses'])
+        ->name('meus.interesses');
 });
 
 // Rotas auxiliares para cadastro animal

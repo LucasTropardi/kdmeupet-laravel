@@ -9,6 +9,9 @@
                     <p class="mb-4">Olá, <strong>{{ Auth::user()->name }}</strong>!</p>
                     <p>Aqui estão todos os animais cadastrados para adoção.</p>
                 </div>
+                <div class="p-6 text-gray-900">
+                    <x-external-button route="adocao.gerenciador.interesse" class="butao text-white">Lista geral de interesses</x-external-button>
+                </div>
             </div>
             <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg p-6 text-gray-900 mt-4">
                 <div class="p-3 bg-white rounded-lg mb-4">

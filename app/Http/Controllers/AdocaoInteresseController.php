@@ -7,9 +7,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Adocao;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdocaoInteresseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:level')->only([
+            'index_gerenciador',
+            'destroy',
+        ]);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -19,6 +27,22 @@ class AdocaoInteresseController extends Controller
         $adocao = Adocao::findOrFail($id);
         $interesses = AdocaoInteresse::where('adocao_id', $adocao->id)->orderBy('adiDataCadastro', 'desc')->paginate(10);
         return view('logado.usuario.adocoes.interesse.index', [
+            'interesses' => $interesses,
+        ]);
+    }
+
+    public function index_gerenciador()
+    {
+        $interesses = AdocaoInteresse::orderBy('adiDataCadastro', 'desc')->paginate(10);
+        return view('logado.gerenciador.adocoes.interesse.index', [
+            'interesses' => $interesses,
+        ]);
+    }
+
+    public function meus_interesses()
+    {
+        $interesses = AdocaoInteresse::where('user_id', Auth::user()->id)->orderBy('adiDataCadastro', 'desc')->paginate(10);
+        return view('logado.usuario.adocoes.interesse.meus-interesses', [
             'interesses' => $interesses,
         ]);
     }
@@ -126,7 +150,6 @@ class AdocaoInteresseController extends Controller
 
     public function finalizar(Request $request, AdocaoInteresse $interesse)
     {
-        // dd($interesse);
         $request->validate([
             'adiResposta'     => 'required|string|max:600',
         ]);
@@ -146,6 +169,7 @@ class AdocaoInteresseController extends Controller
      */
     public function destroy(AdocaoInteresse $interesse)
     {
-        //
+        AdocaoInteresse::findOrFail($interesse->id)->delete();
+        return redirect(route('adocao.gerenciador.interesse'));
     }
 }
