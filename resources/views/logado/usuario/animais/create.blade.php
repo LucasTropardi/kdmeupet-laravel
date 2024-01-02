@@ -102,5 +102,8 @@
         </div>
     </div>
 <!-- Leaflet js -->
-@include('partials.js.js-mapa-cadastro')
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
+<script src="{{ asset('js/mapa-cadastro.js') }}"></script>
 </x-app-layout>

@@ -63,5 +63,5 @@
         </div>
     </div>
     @include('partials.modals.modal-adocao-gerenciador')
-    @include('partials.js.js-modal-logado-adocao')
+    <script src="{{ asset('js/modal-logado-adocao.js') }}"></script>
 </x-app-layout>

@@ -189,6 +189,6 @@
         </div>
     </div>
     @include('partials.js.js-mapa-show-animal')
-    @include('partials.js.js-show-animal-msg')
+    <script src="{{ asset('js/show-animal-msg.js') }}"></script>
 </x-app-layout>
 

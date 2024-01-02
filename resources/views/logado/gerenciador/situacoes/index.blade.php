@@ -48,5 +48,5 @@
         </div>
     </div>
     @include('partials.modals.modal-excluir-situacao')
-    @include('partials.js.js-modal-excluir-situacao')
+    <script src="{{ asset('js/modal-excluir-situacao.js') }}"></script>
 </x-app-layout>

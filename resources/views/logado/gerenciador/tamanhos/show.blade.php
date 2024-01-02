@@ -37,6 +37,6 @@
         </div>
     </div>
     @include('partials.modals.modal-excluir-tamanho')
-    @include('partials.js.js-modal-excluir-tamanho')
+    <script src="{{ asset('js/modal-excluir-tamanho.js') }}"></script>
 </x-app-layout>
 

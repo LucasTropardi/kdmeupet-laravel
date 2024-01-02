@@ -34,6 +34,6 @@
         </div>
     </div>
     @include('partials.modals.modal-excluir-especie')
-    @include('partials.js.js-modal-excluir-especie')
+    <script src="{{ asset('js/modal-excluir-especie.js') }}"></script>
 </x-app-layout>
 

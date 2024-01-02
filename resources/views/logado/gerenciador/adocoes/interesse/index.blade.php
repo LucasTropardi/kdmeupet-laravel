@@ -56,5 +56,5 @@
         </div>
     </div>
     @include('partials.modals.modal-excluir-interesse')
-    @include('partials.js.js-modal-excluir-interesse')
+    <script src="{{ asset('js/modal-excluir-interesse.js') }}"></script>
 </x-app-layout>

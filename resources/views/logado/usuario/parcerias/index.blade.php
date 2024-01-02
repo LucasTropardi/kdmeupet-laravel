@@ -69,5 +69,5 @@
         </div>
     </div>
     @include('partials.modals.modal-parceria')
-    @include('partials.js.modal-aprovar-finalizar-parceria')
+    <script src="{{ asset('js/modal-aprovar-finalizar-parceria.js') }}"></script>
 </x-app-layout>

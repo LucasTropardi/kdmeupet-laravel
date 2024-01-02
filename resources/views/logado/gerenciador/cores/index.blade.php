@@ -47,5 +47,5 @@
         </div>
     </div>
     @include('partials.modals.modal-excluir-cor')
-    @include('partials.js.js-modal-excluir-cor')
+    <script src="{{ asset('js/modal-excluir-cor.js') }}"></script>
 </x-app-layout>

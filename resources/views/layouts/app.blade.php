@@ -65,7 +65,7 @@
                 {{ $slot }}
             </main>
         </div>
-        @include('partials.js.js-modals-logado')
+        <script src="{{ asset('js/modals-logado.js') }}"></script>
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>

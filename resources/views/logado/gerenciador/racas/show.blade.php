@@ -37,6 +37,6 @@
         </div>
     </div>
     @include('partials.modals.modal-excluir-raca')
-    @include('partials.js.js-modal-excluir-raca')
+    <script src="{{ asset('js/modal-excluir-raca.js') }}"></script>
 </x-app-layout>
 
