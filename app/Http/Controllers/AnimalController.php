@@ -13,6 +13,7 @@ use App\Models\Tamanho;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class AnimalController extends Controller
@@ -266,7 +267,7 @@ class AnimalController extends Controller
         $animal->update([
             'anFinalizado' => 1,
         ]);
-        return redirect(route('animal.index'));
+        return redirect(Auth::user()->level === 'admin' ? route('animal-gerenciador.index') : route('animal.index'));
     }
 
     public function buscarRacas(Request $request)

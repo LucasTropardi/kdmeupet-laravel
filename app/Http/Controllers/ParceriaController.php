@@ -203,7 +203,7 @@ class ParceriaController extends Controller
         $parceria->update([
             'parFinalizado' => 1,
         ]);
-        return redirect(route('parceria.gerenciador'));
+        return redirect(Auth::user()->level === 'admin' ? route('parceria.gerenciador') : route('parceria.index'));
     }
 
     /**

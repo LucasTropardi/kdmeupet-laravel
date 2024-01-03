@@ -8,7 +8,7 @@
                 @method('DELETE')
                 <input type="hidden" id="animalIdInputExcluir" name="animal_id" value="">
                 <button type="button" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded mr-2" id="cancelBtnExcluirAnimal">Cancelar</button>
-                <button type="button" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded" id="confirmBtnExcluirAnimal">Sim</button>
+                <button type="button" class="px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded" id="confirmBtnExcluirAnimal">Sim</button>
             </form>
         </div>
     </div>

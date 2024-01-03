@@ -8,7 +8,7 @@
                 @method('DELETE')
                 <input type="hidden" id="adocaoIdInput" name="adocao_id" value="">
                 <button type="button" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded mr-2" id="cancelBtnAdocaoExcluir">Cancelar</button>
-                <button type="button" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded" id="confirmBtnAdocaoExcluir">Sim</button>
+                <button type="button" class="px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded" id="confirmBtnAdocaoExcluir">Sim</button>
             </form>
         </div>
     </div>
