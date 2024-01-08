@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Parceria') }}
-        </h2>
-    </x-slot>
     @section('title','Parcerias')
     @include('partials.bannertop')
     <div class="py-12">

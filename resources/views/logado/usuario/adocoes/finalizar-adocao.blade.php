@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Cadastrar animal para adoção') }}
-        </h2>
-    </x-slot>
     @section('title','Animal para adoção')
     @include('partials.bannertop')
     <div class="py-10">

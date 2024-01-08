@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div><br></div>
+    {{-- <div><br></div> --}}
     @section('title','Achados')
     @include('partials.bannertop')
 

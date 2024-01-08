@@ -1,5 +1,4 @@
 <x-app-layout>
-    <div><br></div>
     @section('title','Meus interesses')
     @include('partials.bannertop')
     <div class="py-8">

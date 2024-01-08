@@ -1,5 +1,4 @@
 <x-app-layout>
-    <div><br></div>
     @section('title','Perdidos')
     @include('partials.bannertop')
 

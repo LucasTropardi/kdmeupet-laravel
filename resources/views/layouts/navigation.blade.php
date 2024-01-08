@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-gray-100 border-b border-gray-100 fixed-nav">
+<nav x-data="{ open: false }" class="bg-transparent fixed-nav">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,35 +6,35 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" wire:navigate title="Dashboard">
-                        <img src="{{ asset('images/navbar-logo-black.png') }}" alt="Logo" width="130">
+                        <img src="{{ asset('images/navbar-logow.png') }}" alt="Logo" width="130">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <!-- Dashboard do usuário -->
+                <!-- Animais -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('animal.index')" :active="request()->routeIs('animal.index')">
+                    <x-nav-link class="text-white uppercase" :href="route('animal.index')" :active="request()->routeIs('animal.index')">
                         {{ __('Animais') }}
                     </x-nav-link>
                 </div>
 
                 <!-- Achados -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('logado.achados')" :active="request()->routeIs('logado.achados')">
+                    <x-nav-link class="text-white uppercase" :href="route('logado.achados')" :active="request()->routeIs('logado.achados')">
                         {{ __('Achados') }}
                     </x-nav-link>
                 </div>
 
                 <!-- Perdidos -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('logado.perdidos')" :active="request()->routeIs('logado.perdidos')">
+                    <x-nav-link class="text-white uppercase" :href="route('logado.perdidos')" :active="request()->routeIs('logado.perdidos')">
                         {{ __('Perdidos') }}
                     </x-nav-link>
                 </div>
 
                 <!-- Parcerias -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('parceria.index')" :active="request()->routeIs('parceria.index')">
+                    <x-nav-link class="text-white uppercase" :href="route('parceria.index')" :active="request()->routeIs('parceria.index')">
                         {{ __('Parceria') }}
                     </x-nav-link>
                 </div>
@@ -45,13 +45,13 @@
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                 <div>
-                                    <span class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-700 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                                    <span class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 uppercase text-white hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
                                         Adoções
                                     </span>
                                 </div>
 
                                 <div class="ms-1">
-                                    <svg class="fill-current h-4 w-4 pt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <svg class="fill-current h-4 w-4 pt-1 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
@@ -79,13 +79,13 @@
                             <x-slot name="trigger">
                                 <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                     <div>
-                                        <span class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-700 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                                        <span class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 uppercase text-white focus:outline-none hover:text-gray-700 hover:border-gray-300 focus:border-indigo-700 transition duration-150 ease-in-out">
                                             Gerenciamento
                                         </span>
                                     </div>
 
                                     <div class="ms-1">
-                                        <svg class="fill-current h-4 w-4 pt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <svg class="fill-current h-4 w-4 pt-1 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </div>
@@ -141,7 +141,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-lg leading-4 font-medium rounded-md text-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">

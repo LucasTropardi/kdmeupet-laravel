@@ -15,7 +15,7 @@ class SituacaoController extends Controller
     public function index()
     {
         return view('logado.gerenciador.situacoes.index', [
-            'situacoes' => Situacao::orderByDesc('created_at')->paginate('5'),
+            'situacoes' => Situacao::orderByDesc('created_at')->paginate('10'),
         ]);
     }
 

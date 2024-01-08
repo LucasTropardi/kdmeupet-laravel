@@ -13,12 +13,12 @@ var navbar = document.querySelector('.fixed-nav');
 
     window.addEventListener('scroll', function() {
         if (window.scrollY > threshold) {
-            navbar.style.backgroundColor = '#ccc';
+            navbar.style.backgroundColor = '#a855f7';
             navLinks.forEach(function(link) {
-                link.style.color = 'blue';
+                link.style.color = 'white';
             });
         } else {
-            navbar.style.backgroundColor = '#f3f4f6';
+            navbar.style.backgroundColor = 'transparent';
             navLinks.forEach(function(link) {
                 link.style.color = 'white';
             });

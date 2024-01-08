@@ -1,42 +1,32 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Cadastrar nova espécie') }}
-        </h2>
-    </x-slot>
     @section('title','Especies')
     @include('partials.bannertop')
-    <div class="py-10">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg">
-                <div class="p-6 text-gray-900" id="form-cadastrare">
-                    <div class="flex flex-col items-center pt-2 sm:pt-0" id="div-cadastrar">
-                        <div class="w-full sm:max-w-md mt-2 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mb-12" id="form-cadastrar">
-                            <div>
-                                <p class="mb-8 text-xl">Digite a espécie desejada, <strong>{{ Auth::user()->name }}</strong>.</p>
-                                <form action="{{ route('especie.store') }}" method="post">
-                                    @csrf
-                                    <!-- User -->
-                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <div class="bg-gray-50 overflow-hidden border border-gray-200 shadow-lg sm:rounded-lg pb-8">
+                <div class="w-full mx-auto mt-8 sm:max-w-md px-2 py-2 bg-blue-200 shadow-md overflow-hidden sm:rounded-lg mb-2" id="form-cadastrar">
+                    <div class="bg-white p-6">
+                        <p class="text-center pt-2 pb-6 text-2xl font-bold">Cadastro de espécie</p>
+                        <p class="mb-4 mt-8 text-xl">Digite o nome da espécie desejada, <strong>{{ Auth::user()->name }}</strong>.</p>
+                        <form action="{{ route('especie.store') }}" method="post">
+                            @csrf
+                            <!-- User -->
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
-                                    <!-- Espécie -->
-                                    <div>
-                                        <x-input-label for="esNome" :value="__('Espécie*')" />
-                                        <x-text-input id="esNome" class="block mt-1 w-full" type="text" name="esNome" :value="old('esNome')" required autofocus autocomplete="esNome" />
-                                        <x-input-error :messages="$errors->get('esNome')" class="mt-2" />
-                                    </div>
-                                    <div class="flex items-center justify-end mt-4">
-                                        <a href="{{ route('especie.index') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Voltar</a>
-                                        <x-primary-button class="ms-4 bg-blue-800 hover:bg-blue-900">
-                                            {{ __('Salvar') }}
-                                        </x-primary-button>
-                                    </div>
-                                </form>
+                            <!-- Espécie -->
+                            <div>
+                                <x-text-input-float id="esNome" placeholder="Coelho" type="text" name="esNome" :value="old('esNome')" required autofocus autocomplete="esNome" />
+                                <x-input-error :messages="$errors->get('esNome')" class="mt-2" />
                             </div>
-                        </div>
+                            <div class="flex items-center justify-end mt-6">
+                                <x-external-button route="especie.index" class="uppercase text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Voltar</x-secondary-button>
+                                <x-primary-button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                    {{ __('Salvar') }}
+                                </x-primary-button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

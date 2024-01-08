@@ -16,7 +16,7 @@ class TamanhoController extends Controller
     public function index()
     {
         return view('logado.gerenciador.tamanhos.index', [
-            'tamanhos' => Tamanho::orderByDesc('created_at')->paginate('5'),
+            'tamanhos' => Tamanho::orderByDesc('created_at')->paginate('10'),
         ]);
     }
 

@@ -15,7 +15,7 @@ class EspecieController extends Controller
     public function index()
     {
         return view('logado.gerenciador.especies.index', [
-            'especies' => Especie::orderByDesc('created_at')->paginate('5'),
+            'especies' => Especie::orderByDesc('created_at')->paginate('10'),
         ]);
     }
 

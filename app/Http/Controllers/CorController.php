@@ -15,7 +15,7 @@ class CorController extends Controller
     public function index()
     {
         return view('logado.gerenciador.cores.index', [
-            'cores' => Cor::orderByDesc('created_at')->paginate('5'),
+            'cores' => Cor::orderByDesc('created_at')->paginate('10'),
         ]);
     }
 

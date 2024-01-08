@@ -2,21 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fix para os ícones personalizados */
-.green-icon {
-    background-image: url('https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png');
-    background-size: contain;
-    width: 25px;
-    height: 41px;
-}
-
-.red-icon {
-    background-image: url('https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png');
-    background-size: contain;
-    width: 25px;
-    height: 41px;
-}
-
 .butao {
     background-color: #00008B;
 }
@@ -39,7 +24,7 @@
     /* border: 2px transparent;
     border-radius: 8px; */
     width: 99%; /* Reduz a largura para 99% */
-    max-width: 1216px; /* Define um tamanho máximo para o banner */
+    max-width: 1183px; /* Define um tamanho máximo para o banner */
     margin: 0 auto; /* Centraliza o banner horizontalmente */
     overflow: hidden;
 }

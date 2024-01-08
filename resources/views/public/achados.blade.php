@@ -1,5 +1,4 @@
 <x-guest-layout>
-    <div><br></div>
     @section('title','Achados')
     @include('partials.bannertop')
 

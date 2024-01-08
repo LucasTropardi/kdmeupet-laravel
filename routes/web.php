@@ -50,6 +50,9 @@ Route::middleware(['auth', 'verified', 'can:level'])->group(function () {
     Route::get('users-index', [UserController::class, 'index'])->name('user.index');
     Route::get('user-edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('user-update/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('edit-profile/{id}', [UserController::class, 'edit_profile'])->name('edit.profile');
+    Route::put('update-profile/{user}', [UserController::class, 'update_profile'])->name('update.profile');
+    Route::delete('destroy-profile/{id}', [UserController::class, 'profile_destroy'])->name('destroy.profile');
 
     // Resources
     Route::resources([

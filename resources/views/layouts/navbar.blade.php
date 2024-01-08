@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-gray-100 border-b border-gray-100 fixed-nav">
+<nav x-data="{ open: false }" class="bg-transparent fixed-nav">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,37 +6,37 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}" wire:navigate >
-                        <img src="{{ asset('images/navbar-logo-black.png') }}" alt="Logo" width="130">
+                        <img src="{{ asset('images/navbar-logow.png') }}" alt="Logo" width="145">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('achados')" :active="request()->routeIs('achados')" wire:navigate>
+                    <x-nav-link class="text-white" :href="route('achados')" :active="request()->routeIs('achados')" wire:navigate>
                         {{ __('ACHADOS') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('perdidos')" :active="request()->routeIs('perdidos')" wire:navigate>
+                    <x-nav-link class="text-white" :href="route('perdidos')" :active="request()->routeIs('perdidos')" wire:navigate>
                         {{ __('PERDIDOS') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('localizacoes')" :active="request()->routeIs('localizacoes')" wire:navigate>
+                    <x-nav-link class="text-white" :href="route('localizacoes')" :active="request()->routeIs('localizacoes')" wire:navigate>
                         {{ __('LOCALIZAÇÕES') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('parcerias')" :active="request()->routeIs('parcerias')" wire:navigate>
+                    <x-nav-link class="text-white" :href="route('parcerias')" :active="request()->routeIs('parcerias')" wire:navigate>
                         {{ __('PARCERIAS') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('adocoes')" :active="request()->routeIs('adocoes')" wire:navigate>
+                    <x-nav-link class="text-white" :href="route('adocoes')" :active="request()->routeIs('adocoes')" wire:navigate>
                         {{ __('ADOÇÕES') }}
                     </x-nav-link>
                 </div>
@@ -46,7 +46,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-gray-100 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md uppercase text-white bg-transparent hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <i class="fa-solid fa-user mr-2"></i>
                             </svg>
